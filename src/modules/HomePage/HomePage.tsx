@@ -6,6 +6,7 @@ import { ExploreStyles } from "./components/ExploreStyles";
 import { ThemesCarousel } from "./components/ThemesCarousel";
 import { AchiveCounters } from "./components/AchieveCounters";
 import { JoinUs } from "./components/JoinUs";
+import { AskedQuestions } from "./components/AskedQuestions";
 
 export const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ export const HomePage = () => {
       <AchiveCounters />
       <ThemesCarousel></ThemesCarousel>
       <JoinUs />
+      <AskedQuestions />
     </>
   );
 };
