@@ -6,6 +6,7 @@ const config = {
     devServer: {
         open: true,
         port: 3000,
+        historyApiFallback: true,
     },
     output: {
         filename: 'myProject.js',
