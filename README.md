@@ -1,4 +1,4 @@
-Посилання на лабораторні роботи:
+Посилання на лабораторні роботи
 
 Лабораторна робота №1:
 https://docs.google.com/document/d/1tUSUy_vxwydu2zkExXwjZ0SgDq5fqYDmgXBA3FEt2XI/edit?usp=sharing
