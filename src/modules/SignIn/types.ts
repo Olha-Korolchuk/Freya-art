@@ -1,5 +1,5 @@
-export interface IStyledLinkProps {
-    isContained: boolean;
-}
 
-export type TLinkProps = IStyledLinkProps;
+export interface ISignInFromFields {
+    email: string;
+    password: string;
+}

@@ -21,7 +21,7 @@ export const Header = () => {
 
     return (
         <StyledHeader>
-            <StyledImg src={ImageLogo} />
+            <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
             <StyledNavs>
                 {!!user ? (
                     <>
@@ -30,7 +30,7 @@ export const Header = () => {
                     </>
                 ) : (
                     <>
-                        <StyledLink to={LINK_TEMPLATES.HOME} isContained={true}>
+                        <StyledLink to={LINK_TEMPLATES.SIGN_IN} isContained={true}>
                             Sign in
                         </StyledLink>
                         <StyledLink to={LINK_TEMPLATES.SIGN_UP} isContained={false}>
