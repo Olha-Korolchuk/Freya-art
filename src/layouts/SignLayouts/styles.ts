@@ -13,7 +13,7 @@ export const StyledContainer = styled.div`
 
 export const StyledBox = styled.div`
     border-radius: 16px;
-    background-color: rgba(243, 252, 237, 0.45);
+    background-color: rgba(243, 252, 237, 0.65);
     backdrop-filter: blur(5px);
     border: 1px solid #fff;
     width: 600px;
