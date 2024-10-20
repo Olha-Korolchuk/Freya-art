@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { TLinkProps } from './types';
 import { Link } from 'react-router-dom';
 
-export const StyledContent = styled.div`
+export const StyledContent = styled.form`
     display: flex;
     flex-direction: column;
     padding: 38px;
-    gap: 28px;
+    gap: 4px;
     text-align: center;
 `;
 
@@ -16,7 +16,7 @@ export const StyledTitle = styled.h1`
     text-shadow: 4px 6px 4px rgba(0, 0, 0, 0.5);
 `;
 
-export const StyledLink = styled(Link)<TLinkProps>`
+export const StyledButton = styled.button<TLinkProps>`
     border-radius: 30px;
     padding: 8px 36px;
     font-size: 20px;
