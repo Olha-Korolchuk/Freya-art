@@ -9,3 +9,12 @@ export interface IUser {
 export interface IError {
     isError: boolean;
 }
+
+export interface IUserInfo {
+    img: string;
+    title: string;
+    description: string;
+    genre: string;
+    type: string;
+    username: string;
+}

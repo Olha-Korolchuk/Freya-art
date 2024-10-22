@@ -7,6 +7,7 @@ import { SignUp } from './modules/SignUp';
 import { SignLayout } from './layouts/SignLayouts';
 import { SignIn } from './modules/SignIn';
 import { Profile } from './modules/Profile';
+import { AllWorks } from './modules/AllWorks';
 
 export const Router = () => (
     <BrowserRouter>
@@ -18,6 +19,7 @@ export const Router = () => (
             <Route path={LINK_TEMPLATES.HOME} element={<BaseLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path={LINK_TEMPLATES.PROFILE()} element={<Profile />} />
+                <Route path={LINK_TEMPLATES.ALL_WORKS()} element={<AllWorks />} />
             </Route>
         </Routes>
     </BrowserRouter>

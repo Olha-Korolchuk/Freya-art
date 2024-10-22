@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     StyledArt,
     StyledArts,
@@ -9,13 +8,12 @@ import {
     StyledContent,
     StyledImg,
     StyledLine,
-    StyledNoArts,
     StyledText,
     StyledTitle,
 } from './styles';
 import { artworksMock } from '@/constants/artworksMock';
-
 import Plus from '@/assets/images/icons/plus.svg';
+import { IUserInfo } from '@/types';
 
 export const Arts = () => {
     return (
@@ -29,7 +27,7 @@ export const Arts = () => {
                 </StyledContent>
                 <StyledLine />
                 <StyledArts>
-                    {artworksMock.map((item) => (
+                    {artworksMock.map((item: IUserInfo) => (
                         <StyledCard>
                             <StyledArt path={item.img} />
                             <StyledContainerTitle>
