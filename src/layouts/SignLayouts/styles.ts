@@ -16,5 +16,5 @@ export const StyledBox = styled.div`
     background-color: rgba(243, 252, 237, 0.65);
     backdrop-filter: blur(5px);
     border: 1px solid #fff;
-    width: 600px;
+    min-width: 600px;
 `;

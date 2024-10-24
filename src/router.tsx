@@ -8,6 +8,7 @@ import { SignLayout } from './layouts/SignLayouts';
 import { SignIn } from './modules/SignIn';
 import { Profile } from './modules/Profile';
 import { AllWorks } from './modules/AllWorks';
+import { ModifyArt } from './modules/ModifyArt';
 
 export const Router = () => (
     <BrowserRouter>
@@ -15,6 +16,7 @@ export const Router = () => (
             <Route element={<SignLayout />}>
                 <Route path={LINK_TEMPLATES.SIGN_UP} element={<SignUp />} />
                 <Route path={LINK_TEMPLATES.SIGN_IN} element={<SignIn />} />
+                <Route path={LINK_TEMPLATES.MODIFY} element={<ModifyArt />} />
             </Route>
             <Route path={LINK_TEMPLATES.HOME} element={<BaseLayout />}>
                 <Route index element={<HomePage />} />
