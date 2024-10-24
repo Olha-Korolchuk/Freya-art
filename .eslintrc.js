@@ -24,7 +24,7 @@ const config = {
     settings: {
         'import/resolver': {
             node: {
-                extensions: ['.js', '.jsx'],
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
             webpack: {
                 // if not set, import won't work properly with aliases f.e. import Header from '@components/Header'
