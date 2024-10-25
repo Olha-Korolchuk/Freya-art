@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledTitle } from './styles';
-// import { artworksMock } from '@/constants/artworksMock';
-// import { artworksMock } from '@/';
+import { artworksMock } from '@/constants/artworksMock';
 import { IUserInfo } from '../../../../types';
 
 export const Artworks = () => {

@@ -14,6 +14,7 @@ import {
 import { artworksMock } from '@/constants/artworksMock';
 import Plus from '@/assets/images/icons/plus.svg';
 import { IUserInfo } from '@/types';
+import React from 'react';
 
 export const Arts = () => {
     return (

@@ -9,6 +9,7 @@ import { SignIn } from './modules/SignIn';
 import { Profile } from './modules/Profile';
 import { AllWorks } from './modules/AllWorks';
 import { ModifyArt } from './modules/ModifyArt';
+import { Detailed } from './modules/Detailed';
 
 export const Router = () => (
     <BrowserRouter>
@@ -22,6 +23,7 @@ export const Router = () => (
                 <Route index element={<HomePage />} />
                 <Route path={LINK_TEMPLATES.PROFILE()} element={<Profile />} />
                 <Route path={LINK_TEMPLATES.ALL_WORKS()} element={<AllWorks />} />
+                <Route path={LINK_TEMPLATES.DETAILED()} element={<Detailed />} />
             </Route>
         </Routes>
     </BrowserRouter>
