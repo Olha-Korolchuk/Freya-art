@@ -10,13 +10,31 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledArt = styled.div<TImgProps>`
-    border-radius: 16px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 330px;
     height: 506px;
-    background-image: ${({ path }) => `url('${path}')`};
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: ${({ path }) => `url('${path}')`};
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: transform 0.5s ease;
+        z-index: 0;
+    }
+
+    &:hover:before {
+        transform: scale(1.2);
+    }
 `;
 
 export const StyledCard = styled.div`
@@ -25,6 +43,7 @@ export const StyledCard = styled.div`
 
 export const StyledContainerTitle = styled.div`
     position: absolute;
+    z-index: 2;
     bottom: 0;
     left: 0;
     right: 0;

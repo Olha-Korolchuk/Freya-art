@@ -66,6 +66,7 @@ export const StyledInfo = styled.h3`
 `;
 
 export const StyledUpdate = styled.button`
+    cursor: pointer;
     background-color: #9dbd61;
     display: flex;
     align-items: center;
@@ -88,6 +89,7 @@ export const StyledBGImg = styled.img`
 `;
 
 export const StyledExit = styled.button`
+    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;

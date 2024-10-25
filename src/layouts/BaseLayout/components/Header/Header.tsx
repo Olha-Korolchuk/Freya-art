@@ -1,5 +1,5 @@
 import { LINK_TEMPLATES } from '@/constants/link';
-import { StyledAvatar, StyledButton, StyledHeader, StyledImg, StyledLink, StyledNavs } from './styles';
+import { StyledAvatar, StyledButton, StyledHeader, StyledImg, StyledLink, StyledNav, StyledNavs } from './styles';
 import ImageLogo from '@/assets/images/logo.png';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,11 @@ export const Header = () => {
 
     return (
         <StyledHeader>
-            <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
+            <StyledNavs>
+                <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
+                <StyledNav to={LINK_TEMPLATES.HOME}>Home</StyledNav>
+                <StyledNav to={LINK_TEMPLATES.ALL_WORKS()}>All arts</StyledNav>
+            </StyledNavs>
             <StyledNavs>
                 {!!user ? (
                     <>

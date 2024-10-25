@@ -15,21 +15,24 @@ import { artworksMock } from '@/constants/artworksMock';
 import Plus from '@/assets/images/icons/plus.svg';
 import { IUserInfo } from '@/types';
 import React from 'react';
+import { LINK_TEMPLATES } from '@/constants/link';
+import { useNavigate } from 'react-router-dom';
 
 export const Arts = () => {
+    const push = useNavigate();
     return (
         <>
             <StyledContainer>
                 <StyledContent>
                     <StyledText>Artworks</StyledText>
-                    <StyledButton>
+                    <StyledButton onClick={() => push(LINK_TEMPLATES.MODIFY)}>
                         <StyledImg src={Plus} />
                     </StyledButton>
                 </StyledContent>
                 <StyledLine />
                 <StyledArts>
                     {artworksMock.map((item: IUserInfo) => (
-                        <StyledCard>
+                        <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
                             <StyledArt path={item.img} />
                             <StyledContainerTitle>
                                 <StyledTitle>{item.title}</StyledTitle>

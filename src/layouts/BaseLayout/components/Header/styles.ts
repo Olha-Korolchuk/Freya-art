@@ -18,6 +18,7 @@ export const StyledImg = styled.img`
 
 export const StyledNavs = styled.div`
     display: flex;
+    align-items: center;
     gap: 20px;
 `;
 
@@ -30,7 +31,17 @@ export const StyledLink = styled(Link)<TLinkProps>`
     ${({ isContained }) => (isContained ? 'background-color: #9dbd61' : 'border: 1px solid #9dbd61')}
 `;
 
+export const StyledNav = styled(Link)`
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    cursor: pointer;
+`;
+
 export const StyledButton = styled.button<TLinkProps>`
+    cursor: pointer;
+    font-size: 20px;
     border-radius: 100%;
     display: flex;
     align-items: center;
