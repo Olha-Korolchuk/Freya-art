@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import { IError } from '@/types';
+import styled, { css } from 'styled-components';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.form`
     padding: 38px;
     display: flex;
     gap: 38px;
@@ -14,13 +15,23 @@ export const StyledForm = styled.div`
     width: 480px;
 `;
 
-export const StyledDropArea = styled.div`
+export const StyledDropArea = styled.div<IError>`
     width: 520px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 2px dashed #000;
-    background-color: #f3fcedaf;
+    position: relative;
+    ${({ isError }) =>
+        isError
+            ? css`
+                  border: 2px dashed #ff0000;
+                  background-color: #ffbfbfaf;
+              `
+            : css`
+                  border: 2px dashed #000;
+                  background-color: #f3fcedaf;
+              `}
+
     border-radius: 16px;
     cursor: pointer;
     &.highlight {
@@ -28,7 +39,7 @@ export const StyledDropArea = styled.div`
     }
 `;
 
-export const StyledFormContent = styled.form`
+export const StyledFormContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,16 +52,11 @@ export const StyledInstructions = styled.p`
     margin-inline: 20px;
 `;
 
-export const StyledFileInput = styled.input`
-    display: none;
-`;
-
 export const StyledLabel = styled.label`
-    border-radius: 30px;
-    padding: 8px 36px;
-    font-size: 20px;
-    background-color: #fff;
-    border: #9dbd61 1px solid;
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    cursor: pointer;
 `;
 
 export const StyledGallery = styled.div`
@@ -61,8 +67,12 @@ export const StyledGallery = styled.div`
     justify-content: center;
     gap: 10px;
 
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
     img {
-        width: 480px;
+        width: 100%;
         height: 470px;
         object-fit: cover;
         border-radius: 16px;

@@ -18,3 +18,18 @@ export interface IUserInfo {
     type: string;
     username: string;
 }
+
+export interface IArt {
+    title: string;
+    description: string;
+    type: string;
+    genre: string;
+    id: string;
+    authorName: string;
+    ownerId: string;
+    image: string;
+}
+
+export enum EQueryKey {
+    USER_ARTS,
+}
