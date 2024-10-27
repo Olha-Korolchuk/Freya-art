@@ -1,17 +1,21 @@
-import React from 'react';
 import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledTitle } from './styles';
-import { artworksMock } from '@/constants/artworksMock';
-import { IUserInfo } from '../../../../types';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
+import { useGetFiltredArtsQuery } from '@/api/art';
+import { IArtIterator } from '@/api/art/types';
 
 export const Artworks = () => {
     const push = useNavigate();
+    const { data, isLoading } = useGetFiltredArtsQuery();
+
+    if (isLoading) {
+        return <>Loading....</>;
+    }
     return (
         <StyledContainer>
-            {artworksMock.map((item: IUserInfo) => (
+            {data?.map((item: IArtIterator) => (
                 <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
-                    <StyledArt path={item.img} />
+                    <StyledArt path={item.image} />
                     <StyledContainerTitle>
                         <StyledTitle>{item.title}</StyledTitle>
                     </StyledContainerTitle>

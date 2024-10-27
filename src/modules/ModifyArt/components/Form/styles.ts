@@ -25,7 +25,7 @@ export const StyledDropArea = styled.div<IError>`
         isError
             ? css`
                   border: 2px dashed #ff0000;
-                  background-color: #ffbfbfaf;
+                  background-color: #ff00000f;
               `
             : css`
                   border: 2px dashed #000;

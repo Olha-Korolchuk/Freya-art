@@ -24,12 +24,13 @@ export interface IArt {
     description: string;
     type: string;
     genre: string;
-    id: string;
+    id: TID;
     authorName: string;
-    ownerId: string;
+    ownerId: TID;
     image: string;
 }
 
 export enum EQueryKey {
     USER_ARTS,
+    ALL_ARTS,
 }

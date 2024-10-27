@@ -17,9 +17,16 @@ import { IUserInfo } from '@/types';
 import React from 'react';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
+import { useGetUserArtsQuery } from '@/api/art';
+import { IArtIterator } from '@/api/art/types';
 
 export const Arts = () => {
     const push = useNavigate();
+    const { data, isLoading } = useGetUserArtsQuery();
+
+    if (isLoading) {
+        return <>Loading</>;
+    }
     return (
         <>
             <StyledContainer>
@@ -31,9 +38,9 @@ export const Arts = () => {
                 </StyledContent>
                 <StyledLine />
                 <StyledArts>
-                    {artworksMock.map((item: IUserInfo) => (
+                    {data?.map((item: IArtIterator) => (
                         <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
-                            <StyledArt path={item.img} />
+                            <StyledArt path={item.image} />
                             <StyledContainerTitle>
                                 <StyledTitle>{item.title}</StyledTitle>
                             </StyledContainerTitle>

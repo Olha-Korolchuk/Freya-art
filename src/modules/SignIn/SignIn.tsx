@@ -26,7 +26,6 @@ export const SignIn = () => {
     const onSubmit = async (data: ISignInFromFields) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, data.email, data.password);
-            console.log(user);
             const profile = await getUserById(user.uid);
 
             if (profile) {

@@ -10,46 +10,58 @@ import {
     StyledForm,
     StyledButton,
 } from './styles';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { defaultValues, ICreateArtFormFields } from './data';
+import { useCreateUserArtMutation } from '@/api/art';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+import { LINK_TEMPLATES } from '@/constants/link';
 
 export const Form = () => {
     const dropAreaRef = useRef<HTMLDivElement | null>(null);
+    const [file, setFile] = useState<File | null>(null);
+    const push = useNavigate();
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitted },
     } = useForm<ICreateArtFormFields>({ defaultValues });
-    console.log('🚀 ~ Form ~ errors:', errors);
+    const { enqueueSnackbar } = useSnackbar();
+    const { mutateAsync } = useCreateUserArtMutation();
 
-    const previewFile = (file: File) => {
-        const gallery = document.getElementById('gallery');
-        if (gallery) {
-            gallery.innerHTML = '';
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                if (reader.result && typeof reader.result === 'string') {
-                    const img = document.createElement('img');
-                    img.src = reader.result;
-                    gallery?.appendChild(img);
-                }
-            };
+    const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const file = e.target.files[0];
+            const gallery = document.getElementById('gallery');
+            if (gallery) {
+                gallery.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                gallery?.appendChild(img);
+                setFile(file);
+            }
         }
     };
 
-    const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) previewFile(e.target.files[0]);
-    };
-
-    const onSubmit = (data: ICreateArtFormFields) => {
-        console.log(data);
-        // Handle form submission here
+    const onSubmit = async (data: ICreateArtFormFields) => {
+        try {
+            if (file) {
+                await mutateAsync({ ...data, image: file });
+                enqueueSnackbar('Success', {
+                    variant: 'success',
+                });
+                push(LINK_TEMPLATES.PROFILE());
+            }
+        } catch (error) {
+            enqueueSnackbar('Something went wrong', {
+                variant: 'warning',
+            });
+        }
     };
 
     return (
         <StyledContainer onSubmit={handleSubmit(onSubmit)}>
-            <StyledDropArea ref={dropAreaRef} isError={!!errors.image?.message}>
+            <StyledDropArea ref={dropAreaRef} isError={isSubmitted && !file}>
                 <StyledFormContent>
                     <StyledInstructions>
                         Upload images using the file selection dialog or by dragging the desired images into the
@@ -57,16 +69,8 @@ export const Form = () => {
                     </StyledInstructions>
                     <StyledButton>Choose image</StyledButton>
                 </StyledFormContent>
-                <StyledLabel htmlFor="image" />
-                <input
-                    {...register('image', { required: true })}
-                    type="file"
-                    id={'image'}
-                    hidden
-                    name={'image'}
-                    accept="image/*"
-                    onChange={handleFileInput}
-                />
+                <StyledLabel htmlFor="file" />
+                <input type="file" id="file" accept="image/*" hidden onChange={handleFileInput} />
                 <StyledGallery id="gallery"></StyledGallery>
             </StyledDropArea>
             <StyledForm>

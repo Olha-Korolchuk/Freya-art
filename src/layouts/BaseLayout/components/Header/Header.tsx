@@ -1,15 +1,14 @@
 import { LINK_TEMPLATES } from '@/constants/link';
 import { StyledAvatar, StyledButton, StyledHeader, StyledImg, StyledLink, StyledNav, StyledNavs } from './styles';
 import ImageLogo from '@/assets/images/logo.png';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../../../api/firebase';
-import { setUser } from '../../../../store/reducers/auth/authSlice';
 import Avatar from '@/assets/images/userAvatar.jpg';
 import LogOut from '@/assets/images/icons/logout.svg';
+import { RootState } from '@/store/store';
+import { setUser } from '@/store/reducers/auth/authSlice';
+import { auth } from '@/api/firebase';
 
 export const Header = () => {
     const { user } = useSelector((state: RootState) => state.auth);

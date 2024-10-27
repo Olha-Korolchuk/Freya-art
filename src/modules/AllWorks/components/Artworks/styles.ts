@@ -10,7 +10,7 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledArt = styled.div<TImgProps>`
-    width: 330px;
+    width: 100%;
     height: 506px;
     border-radius: 16px;
     position: relative;

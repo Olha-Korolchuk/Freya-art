@@ -1,15 +1,10 @@
-export interface ICreateArtFormFields {
-    title: string;
-    description: string;
-    type: string;
-    genre: string;
-    image: string;
-}
+import { IArt } from '@/types';
+
+export interface ICreateArtFormFields extends Pick<IArt, 'description' | 'genre' | 'title' | 'type'> {}
 
 export const defaultValues: ICreateArtFormFields = {
     description: '',
     genre: '',
-    image: '',
     title: '',
     type: '',
 };
