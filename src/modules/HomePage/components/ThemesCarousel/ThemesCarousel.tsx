@@ -29,7 +29,7 @@ export const ThemesCarousel = () => {
                 navigation
             >
                 {themesCarousel.map((item) => (
-                    <SwiperSlide onClick={() => push(LINK_TEMPLATES.DETAILED())}>
+                    <SwiperSlide onClick={() => push(LINK_TEMPLATES.DETAILED(item.path))}>
                         <StyledImg path={item.path} />
                         <StyledContainerTitle>
                             <StyledTitle>{item.title}</StyledTitle>

@@ -1,5 +1,5 @@
 export interface IStyledLinkProps {
-  isContained: boolean;
+    $isContained: boolean;
 }
 
 export type TLinkProps = IStyledLinkProps;

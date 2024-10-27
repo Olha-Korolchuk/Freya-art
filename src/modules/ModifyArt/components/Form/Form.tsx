@@ -12,7 +12,7 @@ import {
 } from './styles';
 import { useRef, useState } from 'react';
 import { defaultValues, ICreateArtFormFields } from './data';
-import { useCreateUserArtMutation } from '@/api/art';
+import { useCreateUserArtMutation, useGetUserArtsQuery } from '@/api/art';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { LINK_TEMPLATES } from '@/constants/link';
@@ -43,10 +43,10 @@ export const Form = () => {
         }
     };
 
-    const onSubmit = async (data: ICreateArtFormFields) => {
+    const onSubmit = (data: ICreateArtFormFields) => {
         try {
             if (file) {
-                await mutateAsync({ ...data, image: file });
+                mutateAsync({ ...data, image: file });
                 enqueueSnackbar('Success', {
                     variant: 'success',
                 });

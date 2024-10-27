@@ -23,7 +23,7 @@ export const Router = () => (
                 <Route index element={<HomePage />} />
                 <Route path={LINK_TEMPLATES.PROFILE()} element={<Profile />} />
                 <Route path={LINK_TEMPLATES.ALL_WORKS()} element={<AllWorks />} />
-                <Route path={LINK_TEMPLATES.DETAILED()} element={<Detailed />} />
+                <Route path={LINK_TEMPLATES.DETAILED(':id')} element={<Detailed />} />
             </Route>
         </Routes>
     </BrowserRouter>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormInput } from '../../ui-library/inputs/FormInput';
 import { StyledContent, StyledButton, StyledTitle } from './../styles';
 import { LINK_TEMPLATES } from '../../constants/link';
@@ -58,10 +57,10 @@ export const SignIn = () => {
                 placeholder="Password"
             />
 
-            <StyledButton type="submit" isContained={true}>
+            <StyledButton type="submit" $isContained={true}>
                 Submit
             </StyledButton>
-            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} isContained={false}>
+            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} $isContained={false}>
                 Sign up
             </StyledButton>
         </StyledContent>

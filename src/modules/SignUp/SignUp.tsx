@@ -96,10 +96,10 @@ export const SignUp = () => {
                 placeholder="Confirm Password"
             />
             <StyledNavs>
-                <StyledButton type="submit" isContained={true}>
+                <StyledButton type="submit" $isContained={true}>
                     Submit
                 </StyledButton>
-                <StyledButton onClick={() => navigate(LINK_TEMPLATES.SIGN_IN)} isContained={false}>
+                <StyledButton onClick={() => navigate(LINK_TEMPLATES.SIGN_IN)} $isContained={false}>
                     Sign in
                 </StyledButton>
             </StyledNavs>

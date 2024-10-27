@@ -28,7 +28,7 @@ export const StyledLink = styled(Link)<TLinkProps>`
     font-size: 20px;
     text-decoration: none;
     color: #000;
-    ${({ isContained }) => (isContained ? 'background-color: #9dbd61' : 'border: 1px solid #9dbd61')}
+    ${({ $isContained }) => ($isContained ? 'background-color: #9dbd61' : 'border: 1px solid #9dbd61')}
 `;
 
 export const StyledNav = styled(Link)`
@@ -48,7 +48,7 @@ export const StyledButton = styled.button<TLinkProps>`
     justify-content: center;
     padding: 1px;
     border: none;
-    ${({ isContained }) => (isContained ? 'background-color: #9dbd61' : 'background-color: #fff')}
+    ${({ $isContained }) => ($isContained ? 'background-color: #9dbd61' : 'background-color: #fff')}
 `;
 
 export const StyledAvatar = styled.img`

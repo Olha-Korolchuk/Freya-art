@@ -31,6 +31,7 @@ export interface IArt {
 }
 
 export enum EQueryKey {
-    USER_ARTS,
-    ALL_ARTS,
+    USER_ARTS = 'USER_ARTS',
+    ALL_ARTS = 'ALL_ARTS',
+    ART = 'ART',
 }

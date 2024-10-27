@@ -4,6 +4,6 @@ export const LINK_TEMPLATES = {
     SIGN_IN: '/sign-in',
     MODIFY: '/modify',
     PROFILE: () => `/profile`,
-    DETAILED: () => `/detailed/`,
+    DETAILED: (id: string) => `/detailed/${id}`,
     ALL_WORKS: () => `/all-works`,
 };

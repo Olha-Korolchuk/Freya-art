@@ -30,19 +30,19 @@ export const Header = () => {
             <StyledNavs>
                 {!!user ? (
                     <>
-                        <StyledButton isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE())}>
+                        <StyledButton $isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE())}>
                             <StyledAvatar src={Avatar} />
                         </StyledButton>
-                        <StyledButton isContained={false} onClick={handlerLogout}>
+                        <StyledButton $isContained={false} onClick={handlerLogout}>
                             <StyledAvatar src={LogOut} />
                         </StyledButton>
                     </>
                 ) : (
                     <>
-                        <StyledLink to={LINK_TEMPLATES.SIGN_IN} isContained={true}>
+                        <StyledLink to={LINK_TEMPLATES.SIGN_IN} $isContained={true}>
                             Sign in
                         </StyledLink>
-                        <StyledLink to={LINK_TEMPLATES.SIGN_UP} isContained={false}>
+                        <StyledLink to={LINK_TEMPLATES.SIGN_UP} $isContained={false}>
                             Sign up
                         </StyledLink>
                     </>

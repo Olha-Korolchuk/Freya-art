@@ -39,7 +39,7 @@ export const Arts = () => {
                 <StyledLine />
                 <StyledArts>
                     {data?.map((item: IArtIterator) => (
-                        <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
+                        <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
                             <StyledArt path={item.image} />
                             <StyledContainerTitle>
                                 <StyledTitle>{item.title}</StyledTitle>

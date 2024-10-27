@@ -1,20 +1,19 @@
 import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledTitle } from './styles';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
-import { useGetFiltredArtsQuery } from '@/api/art';
 import { IArtIterator } from '@/api/art/types';
+import { FC } from 'react';
 
-export const Artworks = () => {
+interface IArtWorksProps {
+    arts: IArtIterator[];
+}
+export const Artworks: FC<IArtWorksProps> = ({ arts }) => {
     const push = useNavigate();
-    const { data, isLoading } = useGetFiltredArtsQuery();
 
-    if (isLoading) {
-        return <>Loading....</>;
-    }
     return (
         <StyledContainer>
-            {data?.map((item: IArtIterator) => (
-                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
+            {arts?.map((item: IArtIterator) => (
+                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
                     <StyledArt path={item.image} />
                     <StyledContainerTitle>
                         <StyledTitle>{item.title}</StyledTitle>
