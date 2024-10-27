@@ -9,53 +9,55 @@ import {
     StyledContainer,
     StyledForm,
     StyledButton,
+    StyledReplace,
 } from './styles';
-import { useRef, useState } from 'react';
-import { defaultValues, ICreateArtFormFields } from './data';
-import { useCreateUserArtMutation, useGetUserArtsQuery } from '@/api/art';
+import { FC, useRef, useState } from 'react';
+import { createDefaultValues, ICreateArtFormFields } from './data';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { LINK_TEMPLATES } from '@/constants/link';
+import { IArtActionRequest, IArtIterator } from '@/api/art/types';
 
-export const Form = () => {
+interface IActionProps {
+    handler: (data: IArtActionRequest) => void;
+    defaultValues?: IArtIterator;
+    isEdit?: boolean;
+}
+
+export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = false }) => {
     const dropAreaRef = useRef<HTMLDivElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
+    const [url, setUrl] = useState<string | null>(defaultValues?.image || null);
+
     const push = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitted },
-    } = useForm<ICreateArtFormFields>({ defaultValues });
+    } = useForm<ICreateArtFormFields>({ defaultValues: createDefaultValues(defaultValues) });
     const { enqueueSnackbar } = useSnackbar();
-    const { mutateAsync } = useCreateUserArtMutation();
 
     const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
-            const gallery = document.getElementById('gallery');
-            if (gallery) {
-                gallery.innerHTML = '';
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(file);
-                gallery?.appendChild(img);
-                setFile(file);
-            }
+            setUrl(URL.createObjectURL(file));
+            setFile(file);
         }
     };
 
     const onSubmit = (data: ICreateArtFormFields) => {
         try {
-            if (file) {
-                mutateAsync({ ...data, image: file });
-                enqueueSnackbar('Success', {
-                    variant: 'success',
-                });
-                push(LINK_TEMPLATES.PROFILE());
+            const image = (file || url) as string | File | undefined;
+
+            if (image) {
+                handler({ ...data, image });
+                enqueueSnackbar('Success', { variant: 'success' });
+                push(isEdit ? LINK_TEMPLATES.DETAILED(defaultValues?.id || '') : LINK_TEMPLATES.PROFILE());
+            } else {
+                enqueueSnackbar('Please provide a valid image.', { variant: 'warning' });
             }
         } catch (error) {
-            enqueueSnackbar('Something went wrong', {
-                variant: 'warning',
-            });
+            enqueueSnackbar('Something went wrong', { variant: 'warning' });
         }
     };
 
@@ -71,7 +73,12 @@ export const Form = () => {
                 </StyledFormContent>
                 <StyledLabel htmlFor="file" />
                 <input type="file" id="file" accept="image/*" hidden onChange={handleFileInput} />
-                <StyledGallery id="gallery"></StyledGallery>
+                <StyledGallery>{!!url && <img src={url} alt="preview" />}</StyledGallery>
+                {!!url && (
+                    <StyledReplace>
+                        <StyledButton>Replace image</StyledButton>
+                    </StyledReplace>
+                )}
             </StyledDropArea>
             <StyledForm>
                 <FormInput

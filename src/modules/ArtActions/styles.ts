@@ -15,6 +15,18 @@ export const StyledForm = styled.div`
     width: 480px;
 `;
 
+export const StyledReplace = styled.div`
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff5c;
+`;
+
 export const StyledDropArea = styled.div<IError>`
     width: 520px;
     display: flex;
@@ -54,7 +66,7 @@ export const StyledInstructions = styled.p`
 
 export const StyledLabel = styled.label`
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     inset: 0;
     cursor: pointer;
 `;

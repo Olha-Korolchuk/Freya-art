@@ -30,6 +30,7 @@ export const StyledBlock = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 `;
 
 export const StyledCategory = styled.div`
@@ -76,6 +77,10 @@ export const StyledUpdate = styled.button`
     width: 30px;
     height: 30px;
     border-radius: 100%;
+`;
+
+export const StyledDelete = styled(StyledUpdate)`
+    background-color: #bd6161;
 `;
 
 export const StyledBGImg = styled.img`

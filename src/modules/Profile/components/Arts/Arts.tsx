@@ -32,7 +32,7 @@ export const Arts = () => {
             <StyledContainer>
                 <StyledContent>
                     <StyledText>Artworks</StyledText>
-                    <StyledButton onClick={() => push(LINK_TEMPLATES.MODIFY)}>
+                    <StyledButton onClick={() => push(LINK_TEMPLATES.CREATE)}>
                         <StyledImg src={Plus} />
                     </StyledButton>
                 </StyledContent>

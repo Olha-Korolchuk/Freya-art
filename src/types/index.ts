@@ -1,4 +1,4 @@
-export type TID = number | string;
+export type TID = string;
 
 export interface IUser {
     id: TID;
