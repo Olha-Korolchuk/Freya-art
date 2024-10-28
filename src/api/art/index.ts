@@ -33,7 +33,13 @@ export const useGetUserArtsQuery = () => {
     });
 };
 
-export const useGetFiltredArtsQuery = (filter?: { title?: string; page?: number; pageSize?: number }) => {
+export const useGetFilteredArtsQuery = (filter?: {
+    title?: string;
+    genre?: string[];
+    type?: string[];
+    page?: number;
+    pageSize?: number;
+}) => {
     const itemsPerPage = filter?.pageSize || 10;
 
     return useQuery<{ arts: IArtIterator[]; total: number }>({
@@ -50,6 +56,12 @@ export const useGetFiltredArtsQuery = (filter?: { title?: string; page?: number;
                     where('title', '<=', filter.title + '\uf8ff'),
                 );
             }
+            if (filter?.genre?.length) {
+                countQuery = query(countQuery, where('genre', 'array-contains-any', filter.genre));
+            }
+            if (filter?.type?.length) {
+                countQuery = query(countQuery, where('type', 'array-contains-any', filter.type));
+            }
             const countDocs = await getDocs(countQuery);
             const total = countDocs.size;
 
@@ -61,7 +73,12 @@ export const useGetFiltredArtsQuery = (filter?: { title?: string; page?: number;
                     where('title', '<=', filter.title + '\uf8ff'),
                 );
             }
-
+            if (filter?.genre?.length) {
+                artsQuery = query(artsQuery, where('genre', 'array-contains-any', filter.genre));
+            }
+            if (filter?.type?.length) {
+                artsQuery = query(artsQuery, where('type', 'array-contains-any', filter.type));
+            }
             if (filter?.page && filter.page > 1) {
                 const lastVisible = await getDocs(query(collectionRef, limit((filter.page - 1) * itemsPerPage)));
                 const lastDoc = lastVisible.docs[lastVisible.docs.length - 1];

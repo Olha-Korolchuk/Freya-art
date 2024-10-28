@@ -22,8 +22,8 @@ export interface IUserInfo {
 export interface IArt {
     title: string;
     description: string;
-    type: string;
-    genre: string;
+    type: string[];
+    genre: string[];
     id: TID;
     authorName: string;
     ownerId: TID;
@@ -34,4 +34,9 @@ export enum EQueryKey {
     USER_ARTS = 'USER_ARTS',
     ALL_ARTS = 'ALL_ARTS',
     ART = 'ART',
+}
+
+export interface IOption {
+    value: string;
+    label: string;
 }

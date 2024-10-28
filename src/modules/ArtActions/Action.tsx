@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { FormInput } from './components/FormInput';
 import {
     StyledDropArea,
@@ -17,6 +17,8 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { IArtActionRequest, IArtIterator } from '@/api/art/types';
+import { FormMultiSelect } from '@/ui-library/inputs/FormMultiSelect';
+import { genreOptions, typeOptions } from '@/constants/select';
 
 interface IActionProps {
     handler: (data: IArtActionRequest) => void;
@@ -31,6 +33,7 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
 
     const push = useNavigate();
     const {
+        control,
         register,
         handleSubmit,
         formState: { errors, isSubmitted },
@@ -87,17 +90,38 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
                     register={register('title', { required: 'Title is required' })}
                     error={errors.title?.message}
                 />
-                <FormInput
-                    placeholder="Genre"
-                    type="genre"
-                    register={register('genre', { required: 'Genre is required' })}
-                    error={errors.genre?.message}
+
+                <Controller
+                    name={'genre'}
+                    control={control}
+                    rules={{
+                        required: 'Genre is required',
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                        <FormMultiSelect
+                            placeholder="Select Genres"
+                            options={genreOptions}
+                            onChange={onChange}
+                            error={errors.genre?.message}
+                            value={genreOptions.filter((option) => value?.includes(option.value))}
+                        />
+                    )}
                 />
-                <FormInput
-                    placeholder="Type"
-                    type="type"
-                    register={register('type', { required: 'Type is required' })}
-                    error={errors.type?.message}
+                <Controller
+                    name={'type'}
+                    control={control}
+                    rules={{
+                        required: 'Type is required',
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                        <FormMultiSelect
+                            placeholder="Select Types"
+                            options={typeOptions}
+                            error={errors.type?.message}
+                            value={typeOptions.filter((option) => value?.includes(option.value))}
+                            onChange={onChange}
+                        />
+                    )}
                 />
                 <FormInput
                     placeholder="Description"

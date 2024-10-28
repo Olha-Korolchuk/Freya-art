@@ -1,13 +1,15 @@
-import { Type } from './components/Type';
-import { Genre } from './components/Genre';
 import { StyledContainer } from './styles';
 import { Dispatch, FC, SetStateAction } from 'react';
-import { StyledInput } from './components/styles';
+import { genreOptions, typeOptions } from '@/constants/select';
+import { FormMultiSelect } from '@/ui-library/inputs/FormMultiSelect';
+import styled from 'styled-components';
 
-export type TFilterField = 'title';
+export type TFilterField = 'title' | 'type' | 'genre';
 
 export interface IFilterFields {
     title: string;
+    genre: string[];
+    type: string[];
 }
 
 export interface IFilterFieldsProps {
@@ -15,8 +17,17 @@ export interface IFilterFieldsProps {
     setFilter: Dispatch<SetStateAction<IFilterFields>>;
 }
 
+const StyledInput = styled.input`
+    border-radius: 8px;
+    border: 1px solid #cccccc;
+    padding: 16px 28px;
+    font-size: 20px;
+    height: 56px;
+    width: 100%;
+`;
+
 export const Filters: FC<IFilterFieldsProps> = ({ filters, setFilter }) => {
-    const handleChange = (value: string, key: TFilterField) => {
+    const handleChange = (value: string[] | string, key: TFilterField) => {
         setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
@@ -27,8 +38,18 @@ export const Filters: FC<IFilterFieldsProps> = ({ filters, setFilter }) => {
                 value={filters.title}
                 onChange={(e) => handleChange(e.target.value, 'title')}
             />
-            <Type />
-            <Genre />
+            <FormMultiSelect
+                value={typeOptions.filter((option) => filters.type?.includes(option.value))}
+                options={typeOptions}
+                placeholder="Select Types"
+                onChange={(values) => handleChange(values, 'type')}
+            />
+            <FormMultiSelect
+                value={genreOptions.filter((option) => filters.genre?.includes(option.value))}
+                options={genreOptions}
+                placeholder="Select Genres"
+                onChange={(values) => handleChange(values, 'genre')}
+            />
         </StyledContainer>
     );
 };

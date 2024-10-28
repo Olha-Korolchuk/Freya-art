@@ -11,10 +11,7 @@ import {
     StyledText,
     StyledTitle,
 } from './styles';
-import { artworksMock } from '@/constants/artworksMock';
 import Plus from '@/assets/images/icons/plus.svg';
-import { IUserInfo } from '@/types';
-import React from 'react';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
 import { useGetUserArtsQuery } from '@/api/art';
@@ -24,6 +21,7 @@ export const Arts = () => {
     const push = useNavigate();
     const { data, isLoading } = useGetUserArtsQuery();
 
+    // "TODO: Provide Loader"
     if (isLoading) {
         return <>Loading</>;
     }

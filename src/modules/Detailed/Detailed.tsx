@@ -48,7 +48,7 @@ export const Detailed = () => {
             enqueueSnackbar('Something went wrong', { variant: 'warning' });
         }
     };
-
+    // "TODO: Provide Loader"
     if (isLoading) {
         return <>Loading...</>;
     }
@@ -70,6 +70,7 @@ export const Detailed = () => {
 
                     <StyledBlock>
                         <StyledCategory>
+                            {/* "TODO: ADD TAGS LIST" */}
                             <StyledInfo>Type: {data?.type}</StyledInfo>
                             <StyledInfo>Genre: {data?.genre}</StyledInfo>
                         </StyledCategory>
