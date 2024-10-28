@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledTitle } from './styles';
 import { artworksMock } from '@/constants/artworksMock';
 import { IUserInfo } from '../../../../types';
@@ -9,11 +8,15 @@ export const Artworks = () => {
     const push = useNavigate();
     return (
         <StyledContainer>
-            {artworksMock.map((item: IUserInfo) => (
-                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED())}>
-                    <StyledArt path={item.img} />
+            {artworksMock.map((item: IUserInfo, index) => (
+                <StyledCard
+                    key={index}
+                    data-cy={`artwork-card-${index}`}
+                    onClick={() => push(LINK_TEMPLATES.DETAILED())}
+                >
+                    <StyledArt path={item.img} data-cy={`artwork-img-${index}`} />
                     <StyledContainerTitle>
-                        <StyledTitle>{item.title}</StyledTitle>
+                        <StyledTitle data-cy={`artwork-title-${index}`}>{item.title}</StyledTitle>
                     </StyledContainerTitle>
                 </StyledCard>
             ))}

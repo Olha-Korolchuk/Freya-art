@@ -1,6 +1,5 @@
 import Avatar from '@/assets/images/userAvatar.jpg';
 import { StyledContainer, StyledEmail, StyledImg, StyledName, StyledText } from './styles';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 
@@ -9,11 +8,11 @@ export const UserInfo = () => {
     return (
         <StyledContainer>
             <StyledText>
-                <StyledName>{user?.name}</StyledName>
-                <StyledEmail>{user?.email}</StyledEmail>
+                <StyledName data-cy="user-name">{user?.name}</StyledName>
+                <StyledEmail data-cy="user-email">{user?.email}</StyledEmail>
             </StyledText>
 
-            <StyledImg src={Avatar} />
+            <StyledImg src={Avatar} data-cy="user-avatar" />
         </StyledContainer>
     );
 };

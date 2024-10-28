@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormInput } from '../../ui-library/inputs/FormInput';
 import { StyledContent, StyledButton, StyledNavs, StyledTitle } from './../styles';
 import { LINK_TEMPLATES } from '../../constants/link';
@@ -67,25 +66,28 @@ export const SignUp = () => {
     };
 
     return (
-        <StyledContent onSubmit={handleSubmit(onSubmit)}>
-            <StyledTitle>Sign up</StyledTitle>
+        <StyledContent onSubmit={handleSubmit(onSubmit)} data-cy="sign-up-form">
+            <StyledTitle data-cy="sign-up-title">Sign up</StyledTitle>
             <FormInput
                 type="email"
                 register={register('email', { required: 'Email is required' })}
                 error={errors?.email?.message}
                 placeholder="Email"
+                data-cy="email-input"
             />
             <FormInput
                 type="text"
                 register={register('name', { required: 'Name is required' })}
                 error={errors?.name?.message}
                 placeholder="Name"
+                data-cy="name-input"
             />
             <FormInput
                 type="password"
                 register={register('password', { required: 'Password is required' })}
                 error={errors?.password?.message}
                 placeholder="Password"
+                data-cy="password-input"
             />
             <FormInput
                 type="password"
@@ -94,12 +96,17 @@ export const SignUp = () => {
                 })}
                 error={errors?.confirmPassword?.message}
                 placeholder="Confirm Password"
+                data-cy="confirm-password-input"
             />
             <StyledNavs>
-                <StyledButton type="submit" isContained={true}>
+                <StyledButton type="submit" isContained={true} data-cy="submit-button">
                     Submit
                 </StyledButton>
-                <StyledButton onClick={() => navigate(LINK_TEMPLATES.SIGN_IN)} isContained={false}>
+                <StyledButton
+                    onClick={() => navigate(LINK_TEMPLATES.SIGN_IN)}
+                    isContained={false}
+                    data-cy="sign-in-button"
+                >
                     Sign in
                 </StyledButton>
             </StyledNavs>

@@ -1,22 +1,15 @@
-import React from "react";
-import {
-  StyledArt,
-  StyledCircle,
-  StyledContainer,
-  StyledFreya,
-  StyledLine,
-  StyledWelcome,
-} from "./styles";
+import React from 'react';
+import { StyledArt, StyledCircle, StyledContainer, StyledFreya, StyledLine, StyledWelcome } from './styles';
 
 export const Welcome = () => {
-  return (
-    <StyledContainer>
-      <StyledWelcome>
-        <StyledFreya>Freya</StyledFreya>
-        <StyledArt>Art</StyledArt>
-      </StyledWelcome>
-      <StyledCircle />
-      <StyledLine />
-    </StyledContainer>
-  );
+    return (
+        <StyledContainer data-cy="styled-container">
+            <StyledWelcome>
+                <StyledFreya data-cy="styled-freya">Freya</StyledFreya>
+                <StyledArt data-cy="styled-art">Art</StyledArt>
+            </StyledWelcome>
+            <StyledCircle data-cy="styled-circle" />
+            <StyledLine data-cy="styled-line" />
+        </StyledContainer>
+    );
 };

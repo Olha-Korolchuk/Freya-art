@@ -1,14 +1,32 @@
 import { defineConfig } from 'cypress';
 import webpackConfig from './config/webpack.cypress.config';
+const cypressFirebasePlugin = require('cypress-firebase').plugin;
 
 export default defineConfig({
     viewportWidth: 1380,
     viewportHeight: 800,
+    env: {
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        databaseURL: process.env.DATABASE_URL,
+        projectId: process.env.PROJECT_ID,
+        storageBucket: process.env.STORAGE_BUCKET,
+        messagingSenderId: process.env.MESSAGING_SENDER_ID,
+        appId: process.env.APP_ID,
+        measurementId: process.env.MEASUREMENT_ID,
+        testUid: process.env.TEST_UID,
+    },
+
     component: {
         devServer: {
             framework: 'react',
             bundler: 'webpack',
             webpackConfig,
+        },
+        setupNodeEvents(on, config) {
+            return cypressFirebasePlugin(on, config, {
+                projectId: process.env.PROJECT_ID,
+            });
         },
         // specPattern: ['src/**/*.cy.{js,jsx,ts,tsx}'],
         // setupNodeEvents(on, config) {
