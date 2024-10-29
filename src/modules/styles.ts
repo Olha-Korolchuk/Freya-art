@@ -8,7 +8,7 @@ export const StyledContent = styled.form`
     display: flex;
     flex-direction: column;
     padding: 38px;
-    gap: 4px;
+    gap: 20px;
     text-align: center;
 `;
 
@@ -23,6 +23,7 @@ export const StyledButton = styled.button<IStyledLinkProps>`
     padding: 8px 36px;
     font-size: 20px;
     text-decoration: none;
+    border: none;
     color: #000;
     background-color: #fff;
     ${({ isContained }) => (isContained ? 'background-color: #9dbd61' : 'border: 1px solid #9dbd61')}

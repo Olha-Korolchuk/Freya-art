@@ -1,5 +1,5 @@
 import { LINK_TEMPLATES } from '@/constants/link';
-import { StyledHeader, StyledImg, StyledLink, StyledNavs } from './styles';
+import { StyledAvatar, StyledButton, StyledHeader, StyledImg, StyledLink, StyledNavs } from './styles';
 import ImageLogo from '@/assets/images/logo.png';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../../api/firebase';
 import { setUser } from '../../../../store/reducers/auth/authSlice';
+import Avatar from '@/assets/images/userAvatar.jpg';
+import LogOut from '@/assets/images/icons/logout.svg';
 
 export const Header = () => {
     const { user } = useSelector((state: RootState) => state.auth);
@@ -25,8 +27,12 @@ export const Header = () => {
             <StyledNavs>
                 {!!user ? (
                     <>
-                        <button onClick={() => push(LINK_TEMPLATES.PROFILE())}>{user.name}</button>
-                        <button onClick={handlerLogout}>Log out</button>
+                        <StyledButton isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE())}>
+                            <StyledAvatar src={Avatar} />
+                        </StyledButton>
+                        <StyledButton isContained={false} onClick={handlerLogout}>
+                            <StyledAvatar src={LogOut} />
+                        </StyledButton>
                     </>
                 ) : (
                     <>
