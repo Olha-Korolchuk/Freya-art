@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import { StyledInput } from './styles';
+import { StyledBox, StyledInput, StyledLable } from './styles';
 import { IStyledInputProps } from './types';
 
-export const FormInput: FC<IStyledInputProps> = ({ name, type }) => {
-    return <StyledInput type={type} placeholder={name}></StyledInput>;
-};
+export const FormInput: FC<IStyledInputProps> = ({ type, placeholder, register, error }) => (
+    <StyledBox>
+        <StyledInput isError={!!error} type={type} placeholder={placeholder} {...register} />
+        <StyledLable>{error || ''}</StyledLable>
+    </StyledBox>
+);

@@ -1,4 +1,8 @@
+import { UseFormRegister } from 'react-hook-form';
+
 export interface IStyledInputProps {
-    name: string;
+    placeholder: string;
     type: string;
+    register: ReturnType<UseFormRegister<any>>;
+    error?: string;
 }
