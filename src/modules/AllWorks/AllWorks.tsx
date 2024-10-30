@@ -1,9 +1,10 @@
-import { Filters, IFilterFields } from './components/Filters/Filters';
-import { Artworks } from './components/Artworks';
-import { Pagination } from '@/components';
-import { useState } from 'react';
-import { useDebounce } from '@/hooks';
 import { useGetFilteredArtsQuery } from '@/api/art';
+import { Pagination } from '@/components';
+import { Loader } from '@/components/Loader';
+import { useDebounce } from '@/hooks';
+import { useState } from 'react';
+import { Artworks } from './components/Artworks';
+import { Filters, IFilterFields } from './components/Filters/Filters';
 
 export const AllWorks = () => {
     const [page, setPage] = useState(1);
@@ -15,8 +16,7 @@ export const AllWorks = () => {
     return (
         <>
             <Filters filters={filter} setFilter={setFilter} />
-            {/* "TODO: Provide Loader" */}
-            {isLoading ? <>Loading...</> : <Artworks arts={data?.arts || []} />}
+            {isLoading ? <Loader bgColor={'#E4EDD4'} height={'80vh'} /> : <Artworks arts={data?.arts || []} />}
             <Pagination
                 currentPage={page}
                 onPageChange={(value) => setPage(value)}
