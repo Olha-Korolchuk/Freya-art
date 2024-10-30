@@ -13,6 +13,7 @@ import {
     StyledIcon,
     StyledImg,
     StyledInfo,
+    StyledTag,
     StyledTexts,
     StyledTitle,
     StyledUpdate,
@@ -27,6 +28,7 @@ import { useDeleteUserArtMutation, useGetArtQuery } from '@/api/art';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useSnackbar } from 'notistack';
+import { Loader } from '@/components/Loader';
 
 export const Detailed = () => {
     const { id } = useParams();
@@ -48,9 +50,9 @@ export const Detailed = () => {
             enqueueSnackbar('Something went wrong', { variant: 'warning' });
         }
     };
-    // "TODO: Provide Loader"
+
     if (isLoading) {
-        return <>Loading...</>;
+        return <Loader bgColor={'#E4EDD4'} />;
     }
     return (
         <StyledContainer>
@@ -64,15 +66,22 @@ export const Detailed = () => {
                 <StyledContent>
                     <StyledTexts>
                         <StyledTitle>{data?.title}</StyledTitle>
-                        <StyledAuthor>{data?.authorName}</StyledAuthor>
+                        <StyledAuthor onClick={() => push(LINK_TEMPLATES.PROFILE(data!.ownerId))}>
+                            {data?.authorName}
+                        </StyledAuthor>
                         <StyledDescription>{data?.description}</StyledDescription>
                     </StyledTexts>
 
                     <StyledBlock>
                         <StyledCategory>
-                            {/* "TODO: ADD TAGS LIST" */}
-                            <StyledInfo>Type: {data?.type}</StyledInfo>
-                            <StyledInfo>Genre: {data?.genre}</StyledInfo>
+                            <StyledInfo>
+                                Type:
+                                {data?.type.map((item: string) => <StyledTag>{item}</StyledTag>)}
+                            </StyledInfo>
+                            <StyledInfo>
+                                Genre:
+                                {data?.genre.map((item: string) => <StyledTag>{item}</StyledTag>)}
+                            </StyledInfo>
                         </StyledCategory>
                         {user?.id === data?.ownerId && (
                             <StyledBlock>

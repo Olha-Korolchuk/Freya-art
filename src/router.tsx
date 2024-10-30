@@ -21,7 +21,7 @@ export const Router = () => (
             </Route>
             <Route path={LINK_TEMPLATES.HOME} element={<BaseLayout />}>
                 <Route index element={<HomePage />} />
-                <Route path={LINK_TEMPLATES.PROFILE()} element={<Profile />} />
+                <Route path={LINK_TEMPLATES.PROFILE(':id')} element={<Profile />} />
                 <Route path={LINK_TEMPLATES.ALL_WORKS()} element={<AllWorks />} />
                 <Route path={LINK_TEMPLATES.DETAILED(':id')} element={<Detailed />} />
             </Route>

@@ -6,9 +6,6 @@ import { getUserById } from './api/query';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/reducers/auth/authSlice';
 import { Loader } from './components/Loader';
-// import { useLocation } from 'react-router-dom';
-
-// const pathNameHistory = new Set<string>();
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -23,15 +20,6 @@ export default function App() {
             setIsLoading(false);
         });
     }, []);
-
-    // const { pathname } = useLocation();
-
-    // useEffect((): void => {
-    //     if (!pathNameHistory.has(pathname)) {
-    //         window.scrollTo(0, 0);
-    //         pathNameHistory.add(pathname);
-    //     }
-    // }, [pathname]);
 
     if (isLoading) {
         return <Loader />;

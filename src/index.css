@@ -9,6 +9,9 @@
     font-style: normal;
 }
 
+body::-webkit-scrollbar {
+    width: 0;
+}
 
 .swiper-button-next,
 .swiper-button-prev,

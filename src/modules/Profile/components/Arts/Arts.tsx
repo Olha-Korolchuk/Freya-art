@@ -8,6 +8,7 @@ import {
     StyledContent,
     StyledImg,
     StyledLine,
+    StyledNoArts,
     StyledText,
     StyledTitle,
 } from './styles';
@@ -19,12 +20,8 @@ import { IArtIterator } from '@/api/art/types';
 
 export const Arts = () => {
     const push = useNavigate();
-    const { data, isLoading } = useGetUserArtsQuery();
+    const { data } = useGetUserArtsQuery();
 
-    // "TODO: Provide Loader"
-    if (isLoading) {
-        return <>Loading</>;
-    }
     return (
         <>
             <StyledContainer>
@@ -35,19 +32,22 @@ export const Arts = () => {
                     </StyledButton>
                 </StyledContent>
                 <StyledLine />
-                <StyledArts>
-                    {data?.map((item: IArtIterator) => (
-                        <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
-                            <StyledArt path={item.image} />
-                            <StyledContainerTitle>
-                                <StyledTitle>{item.title}</StyledTitle>
-                            </StyledContainerTitle>
-                        </StyledCard>
-                    ))}
-                </StyledArts>
-                {/* <StyledNoArts>
-                    <StyledText>The user has not added artwork yet</StyledText>
-                </StyledNoArts> */}
+                {data?.length ? (
+                    <StyledArts>
+                        {data?.map((item: IArtIterator) => (
+                            <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
+                                <StyledArt path={item.image} />
+                                <StyledContainerTitle>
+                                    <StyledTitle>{item.title}</StyledTitle>
+                                </StyledContainerTitle>
+                            </StyledCard>
+                        ))}
+                    </StyledArts>
+                ) : (
+                    <StyledNoArts>
+                        <StyledText>The user has not added artwork yet</StyledText>
+                    </StyledNoArts>
+                )}
             </StyledContainer>
         </>
     );

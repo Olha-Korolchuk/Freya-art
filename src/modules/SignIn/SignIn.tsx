@@ -29,7 +29,7 @@ export const SignIn = () => {
 
             if (profile) {
                 dispatch(setUser(profile));
-                push(LINK_TEMPLATES.PROFILE());
+                push(LINK_TEMPLATES.PROFILE(profile.id));
                 enqueueSnackbar('Success', {
                     variant: 'success',
                 });

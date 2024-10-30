@@ -4,6 +4,7 @@ export interface IUser {
     id: TID;
     name: string;
     email: string;
+    image?: string;
 }
 
 export interface IError {

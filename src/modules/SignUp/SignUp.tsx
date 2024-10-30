@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormInput } from '../../ui-library/inputs/FormInput';
 import { StyledContent, StyledButton, StyledNavs, StyledTitle } from './../styles';
 import { LINK_TEMPLATES } from '../../constants/link';
@@ -54,7 +53,7 @@ export const SignUp = () => {
             if (profile) {
                 await addDoc(usersCollectionRef, profile);
                 dispatch(setUser(profile));
-                navigate(LINK_TEMPLATES.PROFILE());
+                navigate(LINK_TEMPLATES.PROFILE(profile.id));
                 enqueueSnackbar('Success', {
                     variant: 'success',
                 });

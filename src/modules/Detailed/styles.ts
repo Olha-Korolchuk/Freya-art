@@ -56,6 +56,7 @@ export const StyledTitle = styled.h1`
 
 export const StyledAuthor = styled.h2`
     font-size: 24px;
+    cursor: pointer;
 `;
 
 export const StyledDescription = styled.p`
@@ -64,6 +65,9 @@ export const StyledDescription = styled.p`
 
 export const StyledInfo = styled.h3`
     font-size: 30px;
+    display: flex;
+    gap: 5px;
+    align-items: end;
 `;
 
 export const StyledUpdate = styled.button`
@@ -103,3 +107,10 @@ export const StyledExit = styled.button`
 `;
 
 export const StyledExitImg = styled.img``;
+
+export const StyledTag = styled.div`
+    background-color: #d4d4d4;
+    padding: 4px 10px;
+    font-size: 16px;
+    border-radius: 8px;
+`;

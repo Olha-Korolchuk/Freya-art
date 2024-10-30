@@ -31,4 +31,26 @@ export const StyledImg = styled.img`
     object-position: center 80%;
     border-radius: 100%;
     border: 1px solid #000;
+    position: relative;
 `;
+
+export const StyledPhoto = styled.div`
+    position: relative;
+`;
+
+export const StyledFile = styled.input`
+    display: none;
+`;
+
+export const StyledLabel = styled.label`
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    background-color: #aed500;
+    border-radius: 100%;
+    border: 1px solid #000;
+`;
+export const StyledIcon = styled.img``;

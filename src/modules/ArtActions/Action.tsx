@@ -19,6 +19,8 @@ import { LINK_TEMPLATES } from '@/constants/link';
 import { IArtActionRequest, IArtIterator } from '@/api/art/types';
 import { FormMultiSelect } from '@/ui-library/inputs/FormMultiSelect';
 import { genreOptions, typeOptions } from '@/constants/select';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 interface IActionProps {
     handler: (data: IArtActionRequest) => void;
@@ -27,6 +29,7 @@ interface IActionProps {
 }
 
 export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = false }) => {
+    const { user } = useSelector((state: RootState) => state.auth);
     const dropAreaRef = useRef<HTMLDivElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
     const [url, setUrl] = useState<string | null>(defaultValues?.image || null);
@@ -55,7 +58,7 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
             if (image) {
                 handler({ ...data, image });
                 enqueueSnackbar('Success', { variant: 'success' });
-                push(isEdit ? LINK_TEMPLATES.DETAILED(defaultValues?.id || '') : LINK_TEMPLATES.PROFILE());
+                push(isEdit ? LINK_TEMPLATES.DETAILED(defaultValues?.id || '') : LINK_TEMPLATES.PROFILE(user!.id));
             } else {
                 enqueueSnackbar('Please provide a valid image.', { variant: 'warning' });
             }

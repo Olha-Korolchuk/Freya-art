@@ -30,8 +30,8 @@ export const Header = () => {
             <StyledNavs>
                 {!!user ? (
                     <>
-                        <StyledButton $isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE())}>
-                            <StyledAvatar src={Avatar} />
+                        <StyledButton $isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE(user.id))}>
+                            <StyledAvatar src={user.image || Avatar} />
                         </StyledButton>
                         <StyledButton $isContained={false} onClick={handlerLogout}>
                             <StyledAvatar src={LogOut} />
