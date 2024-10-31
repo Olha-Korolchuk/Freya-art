@@ -15,26 +15,33 @@ import {
 import Plus from '@/assets/images/icons/plus.svg';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
-import { useGetUserArtsQuery } from '@/api/art';
 import { IArtIterator } from '@/api/art/types';
+import { IArt } from '@/types';
+import { FC } from 'react';
 
-export const Arts = () => {
+interface IArtsProps {
+    arts?: IArt[];
+    isOwner: boolean;
+}
+
+export const Arts: FC<IArtsProps> = ({ arts, isOwner }) => {
     const push = useNavigate();
-    const { data } = useGetUserArtsQuery();
 
     return (
         <>
             <StyledContainer>
                 <StyledContent>
                     <StyledText>Artworks</StyledText>
-                    <StyledButton onClick={() => push(LINK_TEMPLATES.CREATE)}>
-                        <StyledImg src={Plus} />
-                    </StyledButton>
+                    {isOwner && (
+                        <StyledButton onClick={() => push(LINK_TEMPLATES.CREATE)}>
+                            <StyledImg src={Plus} />
+                        </StyledButton>
+                    )}
                 </StyledContent>
                 <StyledLine />
-                {data?.length ? (
+                {arts?.length ? (
                     <StyledArts>
-                        {data?.map((item: IArtIterator) => (
+                        {arts?.map((item: IArtIterator) => (
                             <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
                                 <StyledArt path={item.image} />
                                 <StyledContainerTitle>

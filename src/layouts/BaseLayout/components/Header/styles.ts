@@ -10,6 +10,11 @@ export const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e6e6e6;
 `;
 
 export const StyledImg = styled.img`
@@ -53,5 +58,7 @@ export const StyledButton = styled.button<TLinkProps>`
 
 export const StyledAvatar = styled.img`
     height: 40px;
+    aspect-ratio: 1 / 1;
     border-radius: 100%;
+    object-fit: cover;
 `;

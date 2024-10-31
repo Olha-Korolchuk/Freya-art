@@ -14,6 +14,7 @@ export const Header = () => {
     const { user } = useSelector((state: RootState) => state.auth);
     const push = useNavigate();
     const dispatch = useDispatch();
+    
     const handlerLogout = () => {
         signOut(auth);
         dispatch(setUser(null));

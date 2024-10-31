@@ -49,6 +49,7 @@ export const SignUp = () => {
                 id: user.uid,
                 name: data.name,
                 email: data.email,
+                image: null
             };
             if (profile) {
                 await addDoc(usersCollectionRef, profile);

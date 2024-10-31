@@ -6,6 +6,15 @@ export const StyledContainer = styled.div`
     position: relative;
 `;
 
+export const StyledRow = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    cursor: pointer;
+`;
+
 export const StyledArt = styled.div`
     position: relative;
     z-index: 1;
@@ -36,6 +45,7 @@ export const StyledBlock = styled.div`
 export const StyledCategory = styled.div`
     display: flex;
     gap: 38px;
+    flex-wrap: wrap;
 `;
 
 export const StyledImg = styled.img`
@@ -48,7 +58,15 @@ export const StyledImg = styled.img`
         rgba(14, 30, 37, 0.42) 0px 2px 16px 0px;
 `;
 
-export const StyledIcon = styled.img``;
+export const StyledAvatar = styled.img`
+    height: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow:
+        rgba(14, 30, 37, 0.32) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.42) 0px 2px 16px 0px;
+`;
 
 export const StyledTitle = styled.h1`
     font-size: 40px;
@@ -64,10 +82,11 @@ export const StyledDescription = styled.p`
 `;
 
 export const StyledInfo = styled.h3`
-    font-size: 30px;
+    font-size: 24px;
     display: flex;
     gap: 5px;
     align-items: end;
+    flex-wrap: wrap;
 `;
 
 export const StyledUpdate = styled.button`
@@ -96,17 +115,6 @@ export const StyledBGImg = styled.img`
     left: 0;
     bottom: 0;
 `;
-
-export const StyledExit = styled.button`
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background-color: transparent;
-`;
-
-export const StyledExitImg = styled.img``;
 
 export const StyledTag = styled.div`
     background-color: #d4d4d4;

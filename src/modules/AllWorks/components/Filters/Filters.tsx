@@ -1,8 +1,7 @@
-import { StyledContainer } from './styles';
+import { StyledContainer, StyledInput } from './styles';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { genreOptions, typeOptions } from '@/constants/select';
 import { FormMultiSelect } from '@/ui-library/inputs/FormMultiSelect';
-import styled from 'styled-components';
 
 export type TFilterField = 'title' | 'type' | 'genre';
 
@@ -17,14 +16,6 @@ export interface IFilterFieldsProps {
     setFilter: Dispatch<SetStateAction<IFilterFields>>;
 }
 
-const StyledInput = styled.input`
-    border-radius: 8px;
-    border: 1px solid #cccccc;
-    padding: 16px 28px;
-    font-size: 20px;
-    height: 56px;
-    width: 100%;
-`;
 
 export const Filters: FC<IFilterFieldsProps> = ({ filters, setFilter }) => {
     const handleChange = (value: string[] | string, key: TFilterField) => {

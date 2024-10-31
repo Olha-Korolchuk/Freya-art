@@ -11,57 +11,59 @@ import {
     StyledPhoto,
     StyledText,
 } from './styles';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { firestore, store } from '@/api/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { IUser } from '@/types';
+import { useUpdateUserMutation } from '@/api/user';
+import { uploadImageAndGetUrl } from '@/api/helpers';
 
-export const UserInfo = () => {
-    const { user } = useSelector((state: RootState) => state.auth);
+interface IUserInfoProps {
+    profile?: IUser;
+    isOwner: boolean;
+}
+
+export const UserInfo: FC<IUserInfoProps> = ({ profile, isOwner }) => {
     const [profileImage, setProfileImage] = useState<null | string>(null);
 
-    const uploadImageAndGetUrl = async (image: File): Promise<string> => {
-        const imageRef = ref(store, `arts/${image.name}`);
-        await uploadBytes(imageRef, image);
-        return getDownloadURL(imageRef);
-    };
+    const { mutateAsync } = useUpdateUserMutation();
 
     const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files![0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => setProfileImage(reader.result!.toString());
-            reader.readAsDataURL(file);
-            const imageUrl = await uploadImageAndGetUrl(file);
+        if (profile) {
+            const file = e.target.files![0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => setProfileImage(reader.result!.toString());
+                reader.readAsDataURL(file);
+                const imageUrl = await uploadImageAndGetUrl(file);
 
-            const refCollection = collection(firestore, 'users');
-            const data = {
-                name: user?.name,
-                email: user?.email,
-                id: user?.id,
-                image: imageUrl,
-            };
-
-            const docRef = doc(refCollection, user?.id);
-            await setDoc(docRef, data);
+                const data: IUser = {
+                    name: profile?.name,
+                    email: profile?.email,
+                    id: profile?.id,
+                    image: imageUrl,
+                };
+                await mutateAsync(data);
+            }
         }
     };
 
     return (
         <StyledContainer>
             <StyledText>
-                <StyledName>{user?.name}</StyledName>
-                <StyledEmail>{user?.email}</StyledEmail>
+                <StyledName>{profile?.name}</StyledName>
+                <StyledEmail>{profile?.email}</StyledEmail>
             </StyledText>
 
             <StyledPhoto>
-                <StyledImg src={profileImage || user?.image || Avatar} />
-                <StyledLabel>
-                    <StyledFile type="file" accept="image/*" onChange={handleImageChange} />
-                    <StyledIcon src={Pensil} />
-                </StyledLabel>
+                <StyledImg src={profileImage || profile?.image || Avatar} />
+                {isOwner && (
+                    <StyledLabel>
+                        <StyledFile type="file" accept="image/*" onChange={handleImageChange} />
+                        <StyledIcon src={Pensil} />
+                    </StyledLabel>
+                )}
             </StyledPhoto>
         </StyledContainer>
     );

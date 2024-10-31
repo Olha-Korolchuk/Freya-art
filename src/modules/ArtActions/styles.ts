@@ -1,6 +1,14 @@
 import { IError } from '@/types';
 import styled, { css } from 'styled-components';
 
+export const StyledLoaderBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 546px;
+    width: 1038px;
+`;
+
 export const StyledContainer = styled.form`
     padding: 38px;
     display: flex;

@@ -6,7 +6,6 @@ import {
     collection,
     deleteDoc,
     doc,
-    getDoc,
     getDocs,
     limit,
     query,
@@ -14,24 +13,11 @@ import {
     updateDoc,
     where,
 } from 'firebase/firestore';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useSelector } from 'react-redux';
-import { firestore, store } from '../firebase';
+import { firestore } from '../firebase';
 import { queryClient } from '../query';
 import { IArtActionRequest, IArtIterator } from './types';
-
-export const useGetUserArtsQuery = () => {
-    const { user } = useSelector((state: RootState) => state.auth);
-    return useQuery<IArtIterator[]>({
-        refetchOnMount: false,
-        queryKey: [EQueryKey.USER_ARTS, user?.id],
-        queryFn: async () => {
-            const collectionRef = query(collection(firestore, 'arts'), where('ownerId', '==', user?.id));
-            const { docs } = await getDocs(collectionRef);
-            return docs.map((doc) => doc.data()) as IArtIterator[];
-        },
-    });
-};
+import { uploadImageAndGetUrl } from '../helpers';
 
 export const useGetFilteredArtsQuery = (filter?: {
     title?: string;
@@ -149,7 +135,6 @@ export const useActionUserArtMutation = () => {
                 ...artData,
                 image: imageUrl,
                 ownerId: user?.id || '',
-                authorName: user?.name || '',
             };
 
             if (isEdit && artData.id) {
@@ -181,10 +166,4 @@ export const useActionUserArtMutation = () => {
             });
         },
     });
-};
-
-const uploadImageAndGetUrl = async (image: File): Promise<string> => {
-    const imageRef = ref(store, `arts/${image.name}`);
-    await uploadBytes(imageRef, image);
-    return getDownloadURL(imageRef);
 };

@@ -4,7 +4,7 @@ export interface IUser {
     id: TID;
     name: string;
     email: string;
-    image?: string;
+    image: string | null;
 }
 
 export interface IError {
@@ -26,7 +26,6 @@ export interface IArt {
     type: string[];
     genre: string[];
     id: TID;
-    authorName: string;
     ownerId: TID;
     image: string;
 }
@@ -35,6 +34,7 @@ export enum EQueryKey {
     USER_ARTS = 'USER_ARTS',
     ALL_ARTS = 'ALL_ARTS',
     ART = 'ART',
+    USER = 'USER',
 }
 
 export interface IOption {

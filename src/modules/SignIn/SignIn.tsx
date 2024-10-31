@@ -7,9 +7,9 @@ import { useForm } from 'react-hook-form';
 import { ISignInFromFields } from './types';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../api/firebase';
-import { getUserById } from '../../api/query';
 import { setUser } from '../../store/reducers/auth/authSlice';
 import { useSnackbar } from 'notistack';
+import { getUserById } from '@/api/user';
 
 export const SignIn = () => {
     const {
@@ -25,7 +25,7 @@ export const SignIn = () => {
     const onSubmit = async (data: ISignInFromFields) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, data.email, data.password);
-            const profile = await getUserById(user.uid);
+            const { user: profile } = await getUserById(user.uid);
 
             if (profile) {
                 dispatch(setUser(profile));

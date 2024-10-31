@@ -3,10 +3,10 @@ import { TImgProps } from './types';
 
 export const StyledContainer = styled.div`
     padding: 0 38px 38px;
-    background-color: #e4edd4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 38px;
+    min-height: 80vh;
 `;
 
 export const StyledArt = styled.div<TImgProps>`
@@ -39,6 +39,7 @@ export const StyledArt = styled.div<TImgProps>`
 
 export const StyledCard = styled.div`
     position: relative;
+    height: fit-content;
 `;
 
 export const StyledContainerTitle = styled.div`
@@ -58,4 +59,11 @@ export const StyledContainerTitle = styled.div`
 
 export const StyledTitle = styled.h3`
     font-size: 40px;
+`;
+
+export const StyledNoArts = styled.div`
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    justify-content: center;
 `;

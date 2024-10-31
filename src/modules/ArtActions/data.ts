@@ -4,7 +4,7 @@ export interface ICreateArtFormFields extends Pick<IArt, 'description' | 'genre'
 
 export const createDefaultValues = (values?: ICreateArtFormFields): ICreateArtFormFields => ({
     description: values?.description || '',
-    genre: values?.genre || '',
+    genre: values?.genre || [],
     title: values?.title || '',
-    type: values?.type || '',
+    type: values?.type || [],
 });

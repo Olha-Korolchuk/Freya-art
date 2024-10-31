@@ -8,7 +8,7 @@ interface ILoaderProps {
 
 const StyledWrapper = styled.div<ILoaderProps>`
     height: ${({ height }) => height || '100vh'};
-    background-color: ${({ bgColor }) => bgColor || '#fff'};
+    background-color: ${({ bgColor }) => bgColor || '#E4EDD4'};
     width: 100%;
     display: flex;
 `;

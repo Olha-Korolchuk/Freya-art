@@ -9,15 +9,27 @@ import { HomePage } from './modules/HomePage';
 import { Profile } from './modules/Profile';
 import { SignIn } from './modules/SignIn';
 import { SignUp } from './modules/SignUp';
+import { FC } from 'react';
 
-export const Router = () => (
+interface IRouterProps {
+    isAuth: boolean;
+}
+
+export const Router: FC<IRouterProps> = ({ isAuth }) => (
     <BrowserRouter>
         <Routes>
             <Route element={<SignLayout />}>
-                <Route path={LINK_TEMPLATES.SIGN_UP} element={<SignUp />} />
-                <Route path={LINK_TEMPLATES.SIGN_IN} element={<SignIn />} />
-                <Route path={LINK_TEMPLATES.CREATE} element={<CreateArtPage />} />
-                <Route path={LINK_TEMPLATES.EDIT(':id')} element={<EditArtPage />} />
+                {isAuth ? (
+                    <>
+                        <Route path={LINK_TEMPLATES.CREATE} element={<CreateArtPage />} />
+                        <Route path={LINK_TEMPLATES.EDIT(':id')} element={<EditArtPage />} />
+                    </>
+                ) : (
+                    <>
+                        <Route path={LINK_TEMPLATES.SIGN_UP} element={<SignUp />} />
+                        <Route path={LINK_TEMPLATES.SIGN_IN} element={<SignIn />} />
+                    </>
+                )}
             </Route>
             <Route path={LINK_TEMPLATES.HOME} element={<BaseLayout />}>
                 <Route index element={<HomePage />} />

@@ -1,6 +1,19 @@
+import { useDeleteUserArtMutation, useGetArtQuery } from '@/api/art';
+import { useGetUserProfile } from '@/api/user';
+import Background from '@/assets/images/achiveCounterBg.png';
+import Exit from '@/assets/images/icons/arrow-exit.svg';
+import Delete from '@/assets/images/icons/delete.svg';
+import Pensil from '@/assets/images/icons/pencil.svg';
+import { Loader } from '@/components/Loader';
+import { LINK_TEMPLATES } from '@/constants/link';
+import { RootState } from '@/store/store';
+import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     StyledArt,
     StyledAuthor,
+    StyledAvatar,
     StyledBGImg,
     StyledBlock,
     StyledCategory,
@@ -8,36 +21,28 @@ import {
     StyledContent,
     StyledDelete,
     StyledDescription,
-    StyledExit,
-    StyledExitImg,
-    StyledIcon,
     StyledImg,
     StyledInfo,
+    StyledRow,
     StyledTag,
     StyledTexts,
     StyledTitle,
     StyledUpdate,
 } from './styles';
-import Background from '@/assets/images/achiveCounterBg.png';
-import Pensil from '@/assets/images/icons/pencil.svg';
-import Delete from '@/assets/images/icons/delete.svg';
-import Exit from '@/assets/images/icons/arrow-exit.svg';
-import { useNavigate, useParams } from 'react-router-dom';
-import { LINK_TEMPLATES } from '@/constants/link';
-import { useDeleteUserArtMutation, useGetArtQuery } from '@/api/art';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { useSnackbar } from 'notistack';
-import { Loader } from '@/components/Loader';
+import Avatar from '@/assets/images/userAvatar.jpg';
 
 export const Detailed = () => {
     const { id } = useParams();
     const push = useNavigate();
-    const { data, isLoading } = useGetArtQuery(id || '');
-    const { user } = useSelector((state: RootState) => state.auth);
     const { enqueueSnackbar } = useSnackbar();
+    const { user } = useSelector((state: RootState) => state.auth);
 
     const { mutateAsync } = useDeleteUserArtMutation();
+    const { data, isLoading } = useGetArtQuery(id || '');
+    const isOwner = user?.id === data?.ownerId;
+
+    const { data: profile = user, isLoading: isLoadingProfile } = useGetUserProfile(data?.ownerId || '', isOwner);
+
     const handlerDelete = () => {
         try {
             const isConfirm = confirm('Are you sure than you wonna delete art?');
@@ -51,24 +56,22 @@ export const Detailed = () => {
         }
     };
 
-    if (isLoading) {
+    if (isLoading || isLoadingProfile) {
         return <Loader bgColor={'#E4EDD4'} />;
     }
+
     return (
         <StyledContainer>
             <StyledBGImg src={Background} />
-            <StyledExit onClick={() => push(-1)}>
-                <StyledExitImg src={Exit} />
-            </StyledExit>
             <StyledArt>
                 <StyledImg src={data?.image} />
-
                 <StyledContent>
                     <StyledTexts>
                         <StyledTitle>{data?.title}</StyledTitle>
-                        <StyledAuthor onClick={() => push(LINK_TEMPLATES.PROFILE(data!.ownerId))}>
-                            {data?.authorName}
-                        </StyledAuthor>
+                        <StyledRow onClick={() => push(LINK_TEMPLATES.PROFILE(data!.ownerId))}>
+                            <StyledAvatar src={profile?.image || Avatar} alt="author avatar" />
+                            <StyledAuthor>{profile?.name}</StyledAuthor>
+                        </StyledRow>
                         <StyledDescription>{data?.description}</StyledDescription>
                     </StyledTexts>
 
@@ -83,13 +86,13 @@ export const Detailed = () => {
                                 {data?.genre.map((item: string) => <StyledTag>{item}</StyledTag>)}
                             </StyledInfo>
                         </StyledCategory>
-                        {user?.id === data?.ownerId && (
+                        {isOwner && (
                             <StyledBlock>
                                 <StyledUpdate onClick={() => push(LINK_TEMPLATES.EDIT(data?.id || ''))}>
-                                    <StyledIcon src={Pensil} />
+                                    <img src={Pensil} alt="edit" />
                                 </StyledUpdate>
                                 <StyledDelete onClick={handlerDelete}>
-                                    <StyledIcon src={Delete} />
+                                    <img src={Delete} alt="delete" />
                                 </StyledDelete>
                             </StyledBlock>
                         )}

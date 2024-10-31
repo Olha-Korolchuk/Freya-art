@@ -68,7 +68,7 @@ export const StyledArt = styled.div<TImgProps>`
 `;
 
 export const StyledNoArts = styled.div`
-    height: 40vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
