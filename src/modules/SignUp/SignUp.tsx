@@ -1,15 +1,15 @@
-import { FormInput } from '../../ui-library/inputs/FormInput';
-import { StyledContent, StyledButton, StyledNavs, StyledTitle } from './../styles';
-import { LINK_TEMPLATES } from '../../constants/link';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth, firestore } from '../../api/firebase';
 import { addDoc, collection } from 'firebase/firestore';
-import { IUser } from '../../types';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/reducers/auth/authSlice';
 import { useSnackbar } from 'notistack';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { auth, firestore } from '../../api/firebase';
+import { LINK_TEMPLATES } from '../../constants/link';
+import { setUser } from '../../store/reducers/auth/authSlice';
+import { IUser } from '../../types';
+import { FormInput } from '../../ui-library/inputs/FormInput';
+import { StyledButton, StyledContent, StyledNavs, StyledTitle } from './../styles';
 
 interface ISignUpFromFields {
     email: string;
@@ -49,11 +49,12 @@ export const SignUp = () => {
                 id: user.uid,
                 name: data.name,
                 email: data.email,
+                image: null,
             };
             if (profile) {
                 await addDoc(usersCollectionRef, profile);
                 dispatch(setUser(profile));
-                navigate(LINK_TEMPLATES.PROFILE());
+                navigate(LINK_TEMPLATES.PROFILE(profile.id));
                 enqueueSnackbar('Success', {
                     variant: 'success',
                 });
@@ -99,13 +100,13 @@ export const SignUp = () => {
                 data-cy="confirm-password-input"
             />
             <StyledNavs>
-                <StyledButton type="submit" isContained={true} data-cy="submit-button">
+                <StyledButton type="submit" $isContained={true} data-cy="submit-button">
                     Submit
                 </StyledButton>
                 <StyledButton
                     onClick={() => navigate(LINK_TEMPLATES.SIGN_IN)}
-                    isContained={false}
                     data-cy="sign-in-button"
+                    $isContained={false}
                 >
                     Sign in
                 </StyledButton>

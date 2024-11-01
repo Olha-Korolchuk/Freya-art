@@ -9,9 +9,16 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
+// cypress/support/commands.js
+
+// Custom command to log in the user
+Cypress.Commands.add('login', (email: string, password: string) => {
+    cy.visit('/sign-in'); // Navigate to the login page
+    cy.get('input[name="email"]').type(email); // Type the email
+    cy.get('input[name="password"]').type(password); // Type the password
+    cy.get('[data-cy="submit-button"]').click();
+});
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
@@ -23,3 +30,5 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import 'cypress-file-upload';

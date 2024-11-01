@@ -40,7 +40,7 @@ export const StyledArts = styled.div`
 `;
 
 export const StyledArt = styled.div<TImgProps>`
-    width: 330px;
+    width: 100%;
     height: 506px;
     border-radius: 16px;
     position: relative;
@@ -68,7 +68,7 @@ export const StyledArt = styled.div<TImgProps>`
 `;
 
 export const StyledNoArts = styled.div`
-    height: 40vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;

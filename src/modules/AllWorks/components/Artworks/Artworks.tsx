@@ -1,22 +1,29 @@
-import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledTitle } from './styles';
-import { artworksMock } from '@/constants/artworksMock';
-import { IUserInfo } from '../../../../types';
+import { StyledArt, StyledCard, StyledContainer, StyledContainerTitle, StyledNoArts, StyledTitle } from './styles';
 import { LINK_TEMPLATES } from '@/constants/link';
 import { useNavigate } from 'react-router-dom';
+import { IArtIterator } from '@/api/art/types';
+import { FC } from 'react';
 
-export const Artworks = () => {
+interface IArtWorksProps {
+    arts: IArtIterator[];
+}
+
+export const Artworks: FC<IArtWorksProps> = ({ arts }) => {
     const push = useNavigate();
+    if (!arts.length) {
+        return (
+            <StyledNoArts>
+                <StyledTitle>Artworks not found</StyledTitle>
+            </StyledNoArts>
+        );
+    }
     return (
         <StyledContainer>
-            {artworksMock.map((item: IUserInfo, index) => (
-                <StyledCard
-                    key={index}
-                    data-cy={`artwork-card-${index}`}
-                    onClick={() => push(LINK_TEMPLATES.DETAILED())}
-                >
-                    <StyledArt path={item.img} data-cy={`artwork-img-${index}`} />
+            {arts?.map((item: IArtIterator) => (
+                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
+                    <StyledArt path={item.image} />
                     <StyledContainerTitle>
-                        <StyledTitle data-cy={`artwork-title-${index}`}>{item.title}</StyledTitle>
+                        <StyledTitle data-cy={`artwork-title-${item.id}`}>{item.title}</StyledTitle>
                     </StyledContainerTitle>
                 </StyledCard>
             ))}

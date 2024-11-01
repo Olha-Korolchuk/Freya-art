@@ -1,3 +1,4 @@
+import { askedQuestions } from "@/constants/askedQuestions";
 import { useState } from "react";
 import {
   StyledAccordion,
@@ -7,7 +8,6 @@ import {
   StyledQuestion,
   StyledText,
 } from "./styles";
-import { askedQuestions } from "@/constants/askedQuestions";
 import { IAskedQuestions } from "./types";
 
 export const AskedQuestions = () => {

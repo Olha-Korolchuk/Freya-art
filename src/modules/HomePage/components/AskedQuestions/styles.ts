@@ -29,6 +29,7 @@ export const StyledQuestion = styled.div`
     padding: 14px 40px 14px 14px;
     background-color: #fff;
     font-size: 27px;
+    cursor: pointer;
 `;
 
 export const StyledAnswer = styled.div<IOpenable>`

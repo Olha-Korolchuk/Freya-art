@@ -1,4 +1,3 @@
-import React from "react";
 import { Welcome } from "./components/Welcome";
 import { Quote } from "./components/Quote";
 import { ArtsInfo } from "./components/ArtsInfo";

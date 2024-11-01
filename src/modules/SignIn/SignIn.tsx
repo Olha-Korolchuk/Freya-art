@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormInput } from '../../ui-library/inputs/FormInput';
 import { StyledContent, StyledButton, StyledTitle } from './../styles';
 import { LINK_TEMPLATES } from '../../constants/link';
@@ -8,9 +7,9 @@ import { useForm } from 'react-hook-form';
 import { ISignInFromFields } from './types';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../api/firebase';
-import { getUserById } from '../../api/query';
 import { setUser } from '../../store/reducers/auth/authSlice';
 import { useSnackbar } from 'notistack';
+import { getUserById } from '@/api/user';
 
 export const SignIn = () => {
     const {
@@ -26,12 +25,11 @@ export const SignIn = () => {
     const onSubmit = async (data: ISignInFromFields) => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, data.email, data.password);
-            console.log(user);
-            const profile = await getUserById(user.uid);
+            const { user: profile } = await getUserById(user.uid);
 
             if (profile) {
                 dispatch(setUser(profile));
-                push(LINK_TEMPLATES.PROFILE());
+                push(LINK_TEMPLATES.PROFILE(profile.id));
                 enqueueSnackbar('Success', {
                     variant: 'success',
                 });
@@ -59,10 +57,10 @@ export const SignIn = () => {
                 placeholder="Password"
             />
 
-            <StyledButton type="submit" isContained={true}>
+            <StyledButton type="submit" $isContained={true} data-cy="submit-button">
                 Submit
             </StyledButton>
-            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} isContained={false}>
+            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} $isContained={false} data-cy="button-sign-up">
                 Sign up
             </StyledButton>
         </StyledContent>

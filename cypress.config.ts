@@ -28,22 +28,15 @@ export default defineConfig({
                 projectId: process.env.PROJECT_ID,
             });
         },
-        // specPattern: ['src/**/*.cy.{js,jsx,ts,tsx}'],
-        // setupNodeEvents(on, config) {
-        //     // component testing node events setup code
-        //     // https://docs.cypress.io/guides/tooling/code-coverage
-        //     require('@cypress/code-coverage/task')(on, config);
-
-        //     on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
-
-        //     return config;
-        // },
     },
 
     e2e: {
-        // eslint-disable-next-line no-unused-vars
+        baseUrl: 'http://localhost:3000',
+        specPattern: ['cypress/**/*.cy.{js,jsx,ts,tsx}'],
         setupNodeEvents(on, config) {
-            // implement node event listeners here
+            return cypressFirebasePlugin(on, config, {
+                projectId: process.env.PROJECT_ID,
+            });
         },
     },
 });

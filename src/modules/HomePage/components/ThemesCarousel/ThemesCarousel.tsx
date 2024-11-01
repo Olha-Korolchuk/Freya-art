@@ -1,11 +1,11 @@
-import { StyledContainer, StyledContainerTitle, StyledImg, StyledText, StyledTitle } from './styles';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { LINK_TEMPLATES } from '@/constants/link';
+import { themesCarousel } from '@/constants/themesCarousel';
+import { useNavigate } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { themesCarousel } from '@/constants/themesCarousel';
 import { A11y, EffectCoverflow, Navigation } from 'swiper/modules';
-import { LINK_TEMPLATES } from '@/constants/link';
-import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { StyledContainer, StyledContainerTitle, StyledImg, StyledText, StyledTitle } from './styles';
 
 export const ThemesCarousel = () => {
     const push = useNavigate();
@@ -30,7 +30,7 @@ export const ThemesCarousel = () => {
                 {themesCarousel.map((item, index) => (
                     <SwiperSlide
                         key={index}
-                        onClick={() => push(LINK_TEMPLATES.DETAILED())}
+                        onClick={() => push(LINK_TEMPLATES.ALL_WORKS())}
                         data-cy={`carousel-slide-${index}`}
                     >
                         <StyledImg path={item.path} data-cy={`slide-img-${index}`} />

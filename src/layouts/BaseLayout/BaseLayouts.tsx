@@ -1,14 +1,18 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "./components/Header";
-import React from "react";
-import { Footer } from "./components/Footer";
+import { Outlet } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import styled from 'styled-components';
 
-export const BaseLayout = () => {
-  return (
-    <div>
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
-  );
-};
+const StyledMain = styled.main`
+    padding-top: 80px;
+`;
+
+export const BaseLayout = () => (
+    <>
+        <Header />
+        <StyledMain>
+            <Outlet />
+        </StyledMain>
+        <Footer />
+    </>
+);
