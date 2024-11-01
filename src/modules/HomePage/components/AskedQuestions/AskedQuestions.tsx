@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   StyledAccordion,
   StyledAccordionContent,
@@ -9,6 +9,7 @@ import {
 } from "./styles";
 import { askedQuestions } from "@/constants/askedQuestions";
 import { IAskedQuestions } from "./types";
+
 export const AskedQuestions = () => {
   const [selected, setSelected] = useState<number[]>([]);
   console.log(selected);

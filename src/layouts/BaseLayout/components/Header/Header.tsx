@@ -1,18 +1,20 @@
 import { LINK_TEMPLATES } from '@/constants/link';
-import { StyledHeader, StyledImg, StyledLink, StyledNavs } from './styles';
+import { StyledAvatar, StyledButton, StyledHeader, StyledImg, StyledLink, StyledNav, StyledNavs } from './styles';
 import ImageLogo from '@/assets/images/logo.png';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../../../api/firebase';
-import { setUser } from '../../../../store/reducers/auth/authSlice';
+import Avatar from '@/assets/images/userAvatar.jpg';
+import LogOut from '@/assets/images/icons/logout.svg';
+import { RootState } from '@/store/store';
+import { setUser } from '@/store/reducers/auth/authSlice';
+import { auth } from '@/api/firebase';
 
 export const Header = () => {
     const { user } = useSelector((state: RootState) => state.auth);
     const push = useNavigate();
     const dispatch = useDispatch();
+    
     const handlerLogout = () => {
         signOut(auth);
         dispatch(setUser(null));
@@ -21,19 +23,27 @@ export const Header = () => {
 
     return (
         <StyledHeader>
-            <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
+            <StyledNavs>
+                <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
+                <StyledNav to={LINK_TEMPLATES.HOME}>Home</StyledNav>
+                <StyledNav to={LINK_TEMPLATES.ALL_WORKS()}>All arts</StyledNav>
+            </StyledNavs>
             <StyledNavs>
                 {!!user ? (
                     <>
-                        <button onClick={() => push(LINK_TEMPLATES.PROFILE())}>{user.name}</button>
-                        <button onClick={handlerLogout}>Log out</button>
+                        <StyledButton $isContained={true} onClick={() => push(LINK_TEMPLATES.PROFILE(user.id))}>
+                            <StyledAvatar src={user.image || Avatar} />
+                        </StyledButton>
+                        <StyledButton $isContained={false} onClick={handlerLogout}>
+                            <StyledAvatar src={LogOut} />
+                        </StyledButton>
                     </>
                 ) : (
                     <>
-                        <StyledLink to={LINK_TEMPLATES.SIGN_IN} isContained={true}>
+                        <StyledLink to={LINK_TEMPLATES.SIGN_IN} $isContained={true}>
                             Sign in
                         </StyledLink>
-                        <StyledLink to={LINK_TEMPLATES.SIGN_UP} isContained={false}>
+                        <StyledLink to={LINK_TEMPLATES.SIGN_UP} $isContained={false}>
                             Sign up
                         </StyledLink>
                     </>
