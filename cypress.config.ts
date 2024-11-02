@@ -5,6 +5,7 @@ const cypressFirebasePlugin = require('cypress-firebase').plugin;
 export default defineConfig({
     viewportWidth: 1380,
     viewportHeight: 800,
+
     env: {
         apiKey: process.env.API_KEY,
         authDomain: process.env.AUTH_DOMAIN,
@@ -23,7 +24,9 @@ export default defineConfig({
             bundler: 'webpack',
             webpackConfig,
         },
+        specPattern: ['cypress/component/*.cy.{js,jsx,ts,tsx}'],
         setupNodeEvents(on, config) {
+            require('@cypress/code-coverage/task')(on, config);
             return cypressFirebasePlugin(on, config, {
                 projectId: process.env.PROJECT_ID,
             });
@@ -32,8 +35,9 @@ export default defineConfig({
 
     e2e: {
         baseUrl: 'http://localhost:3000',
-        specPattern: ['cypress/**/*.cy.{js,jsx,ts,tsx}'],
+        specPattern: ['cypress/e2e/*.cy.{js,jsx,ts,tsx}'],
         setupNodeEvents(on, config) {
+            require('@cypress/code-coverage/task')(on, config);
             return cypressFirebasePlugin(on, config, {
                 projectId: process.env.PROJECT_ID,
             });

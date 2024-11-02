@@ -18,6 +18,23 @@ describe('AllWorks Component', () => {
         cy.get('[data-cy^="artwork-title-"]').should('exist');
     });
 
+    it('applies filters by all filters', () => {
+        cy.get('input[placeholder="Search..."]').type('Berserk');
+
+        cy.get('#react-select-3-input').click();
+        cy.contains('Printmaking').click();
+
+        cy.get('#react-select-5-input').click();
+        cy.contains('Fantasy').click();
+
+        cy.get('[data-cy^="artwork-title-"]').should('exist');
+    });
+
+    it('click art and redirect to detailed page', () => {
+        cy.contains('Berserk').click();
+        cy.url().should('include', '/detailed');
+    });
+
     it('displays a message when no artworks are found', () => {
         cy.get('input[placeholder="Search..."]').type('NonExistingTitle');
         cy.contains('Artworks not found').should('exist');

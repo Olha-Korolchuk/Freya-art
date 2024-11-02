@@ -24,7 +24,7 @@ export const Header = () => {
     return (
         <StyledHeader>
             <StyledNavs>
-                <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} />
+                <StyledImg src={ImageLogo} onClick={() => push(LINK_TEMPLATES.HOME)} data-cy="header-logo" />
                 <StyledNav to={LINK_TEMPLATES.HOME} data-cy="header-home">
                     Home
                 </StyledNav>

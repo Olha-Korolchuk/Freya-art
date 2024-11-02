@@ -50,7 +50,7 @@ describe('SignUp Component', () => {
         cy.contains('Passwords do not match');
     });
 
-    it('should show error notification on sign up failure', async () => {
+    it('should show error notification on sign up failure', () => {
         cy.get('input[placeholder="Email"]').type('john@example.com');
         cy.get('input[placeholder="Name"]').type('John');
         cy.get("input[placeholder='Password']").type('password123');
@@ -58,5 +58,12 @@ describe('SignUp Component', () => {
         cy.get('button[type="submit"]').click();
 
         cy.contains('Something went wrong');
+    });
+
+    it('should be clicked', () => {
+        const clickSpy = cy.spy();
+        cy.get('button[type="submit"]').invoke('on', 'click', clickSpy);
+        cy.get('button[type="submit"]').click();
+        cy.wrap(clickSpy).should('have.been.called');
     });
 });

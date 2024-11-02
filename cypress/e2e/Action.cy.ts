@@ -44,4 +44,21 @@ describe('Action Component E2E Test', () => {
 
         cy.url().should('include', '/profile');
     });
+
+    it('should display validation errors when Title and Description fields are empty', () => {
+        cy.get('#react-select-3-input').click();
+        cy.contains('Abstract').click();
+        cy.get('#react-select-3-input').click();
+        cy.contains('Portrait').click();
+
+        cy.get('#react-select-5-input').click();
+        cy.contains('Painting').click();
+
+        cy.get('input[type="file"]').attachFile('example.png');
+
+        cy.get('button[type="submit"]').click();
+
+        cy.contains('Title is required').should('be.visible');
+        cy.contains('Description is required').should('be.visible');
+    });
 });

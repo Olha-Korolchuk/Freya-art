@@ -26,7 +26,7 @@ describe('SignUp Form', () => {
     });
 
     it('should submit successfully when form is filled correctly', () => {
-        cy.get('input[placeholder="Email"]').type('john@example.com');
+        cy.get('input[placeholder="Email"]').type('john2@example.com');
         cy.get('input[placeholder="Name"]').type('John Doe');
         cy.get("input[placeholder='Password']").type('password123');
         cy.get("input[placeholder='Confirm Password']").type('password123');
@@ -44,6 +44,28 @@ describe('SignUp Form', () => {
         cy.get('[data-cy="submit-button"]').click();
 
         cy.url().should('include', '/profile');
+    });
+
+    it('should submit error when form is filled with exists email', () => {
+        cy.get('input[placeholder="Email"]').type('john1@example.com');
+        cy.get('input[placeholder="Name"]').type('John Doe');
+        cy.get("input[placeholder='Password']").type('password123');
+        cy.get("input[placeholder='Confirm Password']").type('password123');
+
+        cy.get('[data-cy="submit-button"]').click();
+
+        cy.contains('Something went wrong').should('be.visible');
+    });
+
+    it('should show validation error for invalid email format', () => {
+        cy.get('input[placeholder="Email"]').type('john1');
+        cy.get('input[placeholder="Name"]').type('John Doe');
+        cy.get("input[placeholder='Password']").type('password123');
+        cy.get("input[placeholder='Confirm Password']").type('password123');
+        cy.get('[data-cy="submit-button"]').click();
+        cy.get('input[placeholder="Email"]').then((input: any) => {
+            expect(input[0].validity.valid).to.be.false;
+        });
     });
 
     it('should navigate to sign-in page when clicking the sign-in button', () => {
