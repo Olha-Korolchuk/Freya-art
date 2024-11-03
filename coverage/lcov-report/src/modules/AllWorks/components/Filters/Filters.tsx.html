@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/10</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>5/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -128,26 +128,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -174,12 +174,12 @@ export interface IFilterFieldsProps {
 }
 &nbsp;
 &nbsp;
-export const Filters: FC&lt;IFilterFieldsProps&gt; = <span class="fstat-no" title="function not covered" >({</span> filters, setFilter }) =&gt; {
-    const handleChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alue: string[] | string, key: TFilterField) =&gt; {</span>
+export const Filters: FC&lt;IFilterFieldsProps&gt; = ({ filters, setFilter }) =&gt; {
+    const handleChange = <span class="fstat-no" title="function not covered" >(v</span>alue: string[] | string, key: TFilterField) =&gt; {
 <span class="cstat-no" title="statement not covered" >        setFilter(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; (<span class="cstat-no" title="statement not covered" >{ ...prev, [key]: value })</span>);</span>
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;StyledContainer&gt;
             &lt;StyledInput
                 placeholder="Search..."
@@ -187,13 +187,13 @@ export const Filters: FC&lt;IFilterFieldsProps&gt; = <span class="fstat-no" titl
                 onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleChange(e.target.value, 'title')}</span>
             /&gt;
             &lt;FormMultiSelect
-                value={typeOptions.filter(<span class="fstat-no" title="function not covered" >(o</span>ption) =&gt; <span class="cstat-no" title="statement not covered" >filters.type?.includes(option.value))</span>}
+                value={typeOptions.filter((option) =&gt; filters.type?.includes(option.value))}
                 options={typeOptions}
                 placeholder="Select Types"
                 onChange={<span class="fstat-no" title="function not covered" >(v</span>alues) =&gt; <span class="cstat-no" title="statement not covered" >handleChange(values, 'type')}</span>
             /&gt;
             &lt;FormMultiSelect
-                value={genreOptions.filter(<span class="fstat-no" title="function not covered" >(o</span>ption) =&gt; <span class="cstat-no" title="statement not covered" >filters.genre?.includes(option.value))</span>}
+                value={genreOptions.filter((option) =&gt; filters.genre?.includes(option.value))}
                 options={genreOptions}
                 placeholder="Select Genres"
                 onChange={<span class="fstat-no" title="function not covered" >(v</span>alues) =&gt; <span class="cstat-no" title="statement not covered" >handleChange(values, 'genre')}</span>
@@ -208,7 +208,7 @@ export const Filters: FC&lt;IFilterFieldsProps&gt; = <span class="fstat-no" titl
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-02T15:30:23.080Z
+                at 2024-11-02T23:37:15.677Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

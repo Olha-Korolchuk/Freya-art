@@ -35,7 +35,7 @@ const customStyles = (isError: boolean) => ({
 });
 
 export const FormMultiSelect: FC<ISelectInputProps> = ({ options, placeholder, error, onChange, value }) => (
-    <StyledBox>
+    <StyledBox data-cy="select-form">
         <Select
             isMulti
             placeholder={placeholder}

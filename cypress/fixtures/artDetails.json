@@ -1,0 +1,9 @@
+{
+    "id": "lzH5LFEWbSiXVRdTczQ1",
+    "title": "Updated Title",
+    "description": "This is a description for the art piece.",
+    "image": "example.png",
+    "ownerId": "NO2A81uNU0X8eVmGLtd0kcmj8ve2",
+    "type": ["painting", "photography", "installation"],
+    "genre": ["abstract", "portrait", "surrealism"]
+}

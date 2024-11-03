@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/11</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -117,8 +117,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,35 +148,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,12 +166,12 @@ import { ISelectInputProps } from './types';
 import Select from 'react-select';
 import { StyledBox, StyledLable } from '../FormInput/styles';
 &nbsp;
-const customStyles = <span class="fstat-no" title="function not covered" >(i</span>sError: boolean) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-    container: <span class="fstat-no" title="function not covered" >(b</span>ase: any) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+const customStyles = (isError: boolean) =&gt; ({
+    container: (base: any) =&gt; ({
         ...base,
         width: '100%',
     }),
-    control: <span class="fstat-no" title="function not covered" >(b</span>ase: any) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    control: (base: any) =&gt; ({
         ...base,
         borderColor: isError ? '#ff0000' : '#cccccc',
         '&amp;:hover': { borderColor: isError ? '#ff0000' : '#000000' },
@@ -181,13 +181,13 @@ const customStyles = <span class="fstat-no" title="function not covered" >(i</sp
         height: '56px',
         fontSize: '20px',
     }),
-    valueContainer: <span class="fstat-no" title="function not covered" >(b</span>ase: any) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    valueContainer: (base: any) =&gt; ({
         ...base,
         height: '46px',
         minHeight: '46px',
         overflowY: 'auto',
     }),
-    option: <span class="fstat-no" title="function not covered" >(b</span>ase: any) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    option: (base: any) =&gt; ({
         ...base,
         padding: '10px',
     }),
@@ -197,15 +197,15 @@ const customStyles = <span class="fstat-no" title="function not covered" >(i</sp
     }),
 });
 &nbsp;
-export const FormMultiSelect: FC&lt;ISelectInputProps&gt; = <span class="fstat-no" title="function not covered" >({</span> options, placeholder, error, onChange, value }) =&gt; (
-<span class="cstat-no" title="statement not covered" >    &lt;StyledBox&gt;</span>
+export const FormMultiSelect: FC&lt;ISelectInputProps&gt; = ({ options, placeholder, error, onChange, value }) =&gt; (
+    &lt;StyledBox data-cy="select-form"&gt;
         &lt;Select
             isMulti
             placeholder={placeholder}
             value={value}
             options={options}
             styles={customStyles(!!error)}
-            onChange={<span class="fstat-no" title="function not covered" >(v</span>alues) =&gt; <span class="cstat-no" title="statement not covered" >onChange(values.map(<span class="fstat-no" title="function not covered" >(i</span>) =&gt; <span class="cstat-no" title="statement not covered" >i.value)</span>)}</span>
+            onChange={(values) =&gt; onChange(values.map((i) =&gt; i.value))}
         /&gt;
         &lt;StyledLable&gt;{error || ''}&lt;/StyledLable&gt;
     &lt;/StyledBox&gt;
@@ -217,7 +217,7 @@ export const FormMultiSelect: FC&lt;ISelectInputProps&gt; = <span class="fstat-n
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-02T15:30:23.080Z
+                at 2024-11-03T00:02:04.269Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

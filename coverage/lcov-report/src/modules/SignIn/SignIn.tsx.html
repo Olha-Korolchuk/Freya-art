@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.75% </span>
+                <span class="strong">6.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/16</span>
+                <span class='fraction'>1/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.75% </span>
+                <span class="strong">6.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/16</span>
+                <span class='fraction'>1/16</span>
             </div>
         
             
@@ -144,18 +144,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -165,6 +160,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,7 +174,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,18 +212,18 @@ import { setUser } from '../../store/reducers/auth/authSlice';
 import { useSnackbar } from 'notistack';
 import { getUserById } from '@/api/user';
 &nbsp;
-export const SignIn = () =&gt; {
+export const SignIn = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm&lt;ISignInFromFields&gt;();
+    } = <span class="cstat-no" title="statement not covered" >useForm&lt;ISignInFromFields&gt;();</span>
 &nbsp;
-    const dispatch = useDispatch();
-    const push = useNavigate();
-    const { enqueueSnackbar } = useSnackbar();
+    const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
+    const push = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+    const { enqueueSnackbar } = <span class="cstat-no" title="statement not covered" >useSnackbar();</span>
 &nbsp;
-    const onSubmit = <span class="fstat-no" title="function not covered" >as</span>ync (data: ISignInFromFields) =&gt; {
+    const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data: ISignInFromFields) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        try {</span>
             const { user } = <span class="cstat-no" title="statement not covered" >await signInWithEmailAndPassword(auth, data.email, data.password);</span>
             const { user: profile } = <span class="cstat-no" title="statement not covered" >await getUserById(user.uid);</span>
@@ -242,7 +242,7 @@ export const SignIn = () =&gt; {
         }
     };
 &nbsp;
-    return (
+<span class="cstat-no" title="statement not covered" >    return (</span>
         &lt;StyledContent onSubmit={handleSubmit(onSubmit)}&gt;
             &lt;StyledTitle&gt;Sign in&lt;/StyledTitle&gt;
             &lt;FormInput
@@ -274,7 +274,7 @@ export const SignIn = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-02T15:30:23.080Z
+                at 2024-11-02T23:37:15.677Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">43.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/30</span>
+                <span class='fraction'>13/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10.34% </span>
+                <span class="strong">44.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/29</span>
+                <span class='fraction'>13/29</span>
             </div>
         
             
@@ -120,28 +120,25 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -151,10 +148,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,31 +159,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useMemo } from 'react';
 import { TPaginationItems, TUsePagination } from './types';
 export const DOTS = '...';
 &nbsp;
-export const usePagination: TUsePagination = <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {
-  const { currentPage, pageSize, totalCount } = <span class="cstat-no" title="statement not covered" >data;</span>
+export const usePagination: TUsePagination = (data) =&gt; {
+  const { currentPage, pageSize, totalCount } = data;
 &nbsp;
-  const paginationRange = <span class="cstat-no" title="statement not covered" >useMemo&lt;TPaginationItems&gt;(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-    const totalPageCount = <span class="cstat-no" title="statement not covered" >Math.ceil(totalCount / pageSize);</span>
+  const paginationRange = useMemo&lt;TPaginationItems&gt;(() =&gt; {
+    const totalPageCount = Math.ceil(totalCount / pageSize);
 &nbsp;
     // pages count = neighboring index to the current index + first index + last index + current index + 2*DOTS
-    const totalPageNumbers = <span class="cstat-no" title="statement not covered" >6;</span>
-    const itemCount = <span class="cstat-no" title="statement not covered" >5;</span>
+    const totalPageNumbers = 6;
+    const itemCount = 5;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (totalPageNumbers &gt;= totalPageCount) {</span>
-<span class="cstat-no" title="statement not covered" >      return range(1, totalPageCount);</span>
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (totalPageNumbers &gt;= totalPageCount) {
+      return range(1, totalPageCount);
     }
 &nbsp;
     // the left index from the current page index
@@ -221,12 +221,12 @@ export const usePagination: TUsePagination = <span class="fstat-no" title="funct
 <span class="cstat-no" title="statement not covered" >    return [];</span>
   }, [currentPage, pageSize, totalCount]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return paginationRange;</span>
+  return paginationRange;
 };
 &nbsp;
-const range = <span class="fstat-no" title="function not covered" >(s</span>tart: number, end: number) =&gt; {
-  let length = <span class="cstat-no" title="statement not covered" >end - start + 1;</span>
-<span class="cstat-no" title="statement not covered" >  return Array.from({ length }, <span class="fstat-no" title="function not covered" >(_</span>, idx) =&gt; <span class="cstat-no" title="statement not covered" >idx + start)</span>;</span>
+const range = (start: number, end: number) =&gt; {
+  let length = end - start + 1;
+  return Array.from({ length }, <span class="fstat-no" title="function not covered" >(_</span>, idx) =&gt; <span class="cstat-no" title="statement not covered" >idx + start)</span>;
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -235,7 +235,7 @@ const range = <span class="fstat-no" title="function not covered" >(s</span>tart
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-02T15:30:23.080Z
+                at 2024-11-02T23:37:15.677Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

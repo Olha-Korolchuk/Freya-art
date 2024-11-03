@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">4.16% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/24</span>
+                <span class='fraction'>1/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">4.16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/24</span>
+                <span class='fraction'>1/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -199,29 +199,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36x</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -241,13 +241,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -315,29 +315,29 @@ interface ISignUpFromFields {
     confirmPassword: string;
 }
 &nbsp;
-export const SignUp = () =&gt; {
+export const SignUp = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
     const {
         register,
         handleSubmit,
         formState: { errors },
         setError,
         clearErrors,
-    } = useForm&lt;ISignUpFromFields&gt;();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { enqueueSnackbar } = useSnackbar();
+    } = <span class="cstat-no" title="statement not covered" >useForm&lt;ISignUpFromFields&gt;();</span>
+    const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
+    const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+    const { enqueueSnackbar } = <span class="cstat-no" title="statement not covered" >useSnackbar();</span>
 &nbsp;
-    const onSubmit = async (data: ISignUpFromFields) =&gt; {
-        if (data.password !== data.confirmPassword) {
-            setError('password', { message: 'Passwords do not match' });
-            setError('confirmPassword', { message: 'Passwords do not match' });
-            return;
+    const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data: ISignUpFromFields) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (data.password !== data.confirmPassword) {</span>
+<span class="cstat-no" title="statement not covered" >            setError('password', { message: 'Passwords do not match' });</span>
+<span class="cstat-no" title="statement not covered" >            setError('confirmPassword', { message: 'Passwords do not match' });</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
         } else {
-            clearErrors(['password', 'confirmPassword']);
+<span class="cstat-no" title="statement not covered" >            clearErrors(['password', 'confirmPassword']);</span>
         }
 &nbsp;
-        try {
-            const { user } = await createUserWithEmailAndPassword(auth, data.email, data.password);
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const { user } = <span class="cstat-no" title="statement not covered" >await createUserWithEmailAndPassword(auth, data.email, data.password);</span>
 <span class="cstat-no" title="statement not covered" >            await updateProfile(user, { displayName: data.name });</span>
 &nbsp;
             const usersCollectionRef = <span class="cstat-no" title="statement not covered" >collection(firestore, 'users');</span>
@@ -357,13 +357,13 @@ export const SignUp = () =&gt; {
                 });
             }
         } catch (error) {
-            enqueueSnackbar('Something went wrong', {
+<span class="cstat-no" title="statement not covered" >            enqueueSnackbar('Something went wrong', {</span>
                 variant: 'warning',
             });
         }
     };
 &nbsp;
-    return (
+<span class="cstat-no" title="statement not covered" >    return (</span>
         &lt;StyledContent onSubmit={handleSubmit(onSubmit)} data-cy="sign-up-form"&gt;
             &lt;StyledTitle data-cy="sign-up-title"&gt;Sign up&lt;/StyledTitle&gt;
             &lt;FormInput
@@ -418,7 +418,7 @@ export const SignUp = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-02T16:47:51.773Z
+                at 2024-11-02T23:37:15.677Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

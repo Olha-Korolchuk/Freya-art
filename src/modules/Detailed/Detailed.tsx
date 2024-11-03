@@ -1,7 +1,6 @@
 import { useDeleteUserArtMutation, useGetArtQuery } from '@/api/art';
 import { useGetUserProfile } from '@/api/user';
 import Background from '@/assets/images/achiveCounterBg.png';
-import Exit from '@/assets/images/icons/arrow-exit.svg';
 import Delete from '@/assets/images/icons/delete.svg';
 import Pensil from '@/assets/images/icons/pencil.svg';
 import { Loader } from '@/components/Loader';
@@ -64,34 +63,37 @@ export const Detailed = () => {
         <StyledContainer>
             <StyledBGImg src={Background} />
             <StyledArt>
-                <StyledImg src={data?.image} />
+                <StyledImg data-cy="art-image" src={data?.image} />
                 <StyledContent>
                     <StyledTexts>
-                        <StyledTitle>{data?.title}</StyledTitle>
+                        <StyledTitle data-cy="art-title">{data?.title}</StyledTitle>
                         <StyledRow onClick={() => push(LINK_TEMPLATES.PROFILE(data!.ownerId))}>
                             <StyledAvatar src={profile?.image || Avatar} alt="author avatar" />
-                            <StyledAuthor>{profile?.name}</StyledAuthor>
+                            <StyledAuthor data-cy="art-author">{profile?.name}</StyledAuthor>
                         </StyledRow>
-                        <StyledDescription>{data?.description}</StyledDescription>
+                        <StyledDescription data-cy="art-description">{data?.description}</StyledDescription>
                     </StyledTexts>
 
                     <StyledBlock>
                         <StyledCategory>
-                            <StyledInfo>
+                            <StyledInfo data-cy="art-type-tags">
                                 Type:
-                                {data?.type.map((item: string) => <StyledTag>{item}</StyledTag>)}
+                                {data?.type.map((item: string) => <StyledTag data-cy="art-tag">{item}</StyledTag>)}
                             </StyledInfo>
-                            <StyledInfo>
+                            <StyledInfo data-cy="art-genre-tags">
                                 Genre:
-                                {data?.genre.map((item: string) => <StyledTag>{item}</StyledTag>)}
+                                {data?.genre.map((item: string) => <StyledTag data-cy="art-tag">{item}</StyledTag>)}
                             </StyledInfo>
                         </StyledCategory>
                         {isOwner && (
                             <StyledBlock>
-                                <StyledUpdate onClick={() => push(LINK_TEMPLATES.EDIT(data?.id || ''))}>
+                                <StyledUpdate
+                                    onClick={() => push(LINK_TEMPLATES.EDIT(data?.id || ''))}
+                                    data-cy="edit-art"
+                                >
                                     <img src={Pensil} alt="edit" />
                                 </StyledUpdate>
-                                <StyledDelete onClick={handlerDelete}>
+                                <StyledDelete onClick={handlerDelete} data-cy="delete-art">
                                     <img src={Delete} alt="delete" />
                                 </StyledDelete>
                             </StyledBlock>
