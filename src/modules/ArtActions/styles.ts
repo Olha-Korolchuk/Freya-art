@@ -28,11 +28,13 @@ export const StyledReplace = styled.div`
     z-index: 2;
     width: 100%;
     left: 0;
-    bottom: 0;
+    bottom: -3px;
     padding: 16px;
     display: flex;
     justify-content: center;
     background-color: #ffffff5c;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 `;
 
 export const StyledDropArea = styled.div<IError>`

@@ -26,5 +26,5 @@ export default function App() {
     if (isLoading) {
         return <Loader />;
     }
-    return <Router isAuth={!!user?.id} />;
+    return <Router isAuth={!!user?.id} isOpenPages={!!window?.isOpenPages} />;
 }

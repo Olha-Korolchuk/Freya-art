@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { TImgProps } from './types';
 
 export const StyledContainer = styled.div`
-    padding: 0 38px 38px;
+    padding: 0 38px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 38px;

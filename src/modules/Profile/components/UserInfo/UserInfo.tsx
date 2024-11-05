@@ -1,5 +1,9 @@
-import Avatar from '@/assets/images/userAvatar.jpg';
+import { uploadImageAndGetUrl } from '@/api/helpers';
+import { useUpdateUserMutation } from '@/api/user';
 import Pensil from '@/assets/images/icons/pencil.svg';
+import Avatar from '@/assets/images/userAvatar.jpg';
+import { IUser } from '@/types';
+import { FC, useState } from 'react';
 import {
     StyledContainer,
     StyledEmail,
@@ -11,13 +15,6 @@ import {
     StyledPhoto,
     StyledText,
 } from './styles';
-import { FC, useState } from 'react';
-import { collection, doc, setDoc } from 'firebase/firestore';
-import { firestore, store } from '@/api/firebase';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { IUser } from '@/types';
-import { useUpdateUserMutation } from '@/api/user';
-import { uploadImageAndGetUrl } from '@/api/helpers';
 
 interface IUserInfoProps {
     profile?: IUser;
@@ -52,12 +49,12 @@ export const UserInfo: FC<IUserInfoProps> = ({ profile, isOwner }) => {
     return (
         <StyledContainer>
             <StyledText>
-                <StyledName>{profile?.name}</StyledName>
-                <StyledEmail>{profile?.email}</StyledEmail>
+                <StyledName data-cy="user-name">{profile?.name}</StyledName>
+                <StyledEmail data-cy="user-email">{profile?.email}</StyledEmail>
             </StyledText>
 
             <StyledPhoto>
-                <StyledImg src={profileImage || profile?.image || Avatar} />
+                <StyledImg src={profileImage || profile?.image || Avatar} data-cy="user-avatar" />
                 {isOwner && (
                     <StyledLabel>
                         <StyledFile type="file" accept="image/*" onChange={handleImageChange} />

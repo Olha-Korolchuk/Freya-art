@@ -13,12 +13,12 @@ const StyledContainer = styled.div`
     flex-direction: column;
     background-color: #e4edd4;
     padding-top: 24px;
-    gap: 6px;
+    gap: 2px;
 `;
 
 export const AllWorks = () => {
     const [page, setPage] = useState(1);
-    const pageSize = 10;
+    const pageSize = 12;
     const [filter, setFilter] = useState<IFilterFields>({ title: '', genre: [], type: [] });
     const debouncedFilter = useDebounce<IFilterFields>(filter, 1000);
     const { data, isLoading } = useGetFilteredArtsQuery({ ...debouncedFilter, page, pageSize });

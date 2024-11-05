@@ -20,10 +20,10 @@ export const Artworks: FC<IArtWorksProps> = ({ arts }) => {
     return (
         <StyledContainer>
             {arts?.map((item: IArtIterator) => (
-                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id}>
-                    <StyledArt path={item.image} />
+                <StyledCard onClick={() => push(LINK_TEMPLATES.DETAILED(item.id))} key={item.id} data-cy="art-card">
+                    <StyledArt data-cy="art-img" path={item.image} />
                     <StyledContainerTitle>
-                        <StyledTitle>{item.title}</StyledTitle>
+                        <StyledTitle data-cy={`artwork-title-${item.id}`}>{item.title}</StyledTitle>
                     </StyledContainerTitle>
                 </StyledCard>
             ))}

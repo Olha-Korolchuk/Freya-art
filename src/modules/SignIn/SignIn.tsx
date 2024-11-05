@@ -57,10 +57,10 @@ export const SignIn = () => {
                 placeholder="Password"
             />
 
-            <StyledButton type="submit" $isContained={true}>
+            <StyledButton type="submit" $isContained={true} data-cy="submit-button">
                 Submit
             </StyledButton>
-            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} $isContained={false}>
+            <StyledButton onClick={() => push(LINK_TEMPLATES.SIGN_UP)} $isContained={false} data-cy="button-sign-up">
                 Sign up
             </StyledButton>
         </StyledContent>

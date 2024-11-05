@@ -1,10 +1,11 @@
 import arrowImage from '@/assets/images/icons/arrow-down.svg';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { ArrowButtonNext, ArrowButtonPrev, ButtonPage, Range, Wrapper } from './styles';
 
 import { IPagination } from './types';
 import { DOTS, usePagination } from '@/hooks';
+
 const Pagination: FC<IPagination> = (props) => {
     const { currentPage, onPageChange, pageSize, totalCount } = props;
     const paginationRange = usePagination({
@@ -12,6 +13,10 @@ const Pagination: FC<IPagination> = (props) => {
         totalCount,
         pageSize,
     });
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0 });
+    }, [currentPage]);
 
     let lastPage = paginationRange[paginationRange.length - 1];
 

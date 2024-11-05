@@ -107,6 +107,7 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
                             onChange={onChange}
                             error={errors.genre?.message}
                             value={genreOptions.filter((option) => value?.includes(option.value))}
+                            data-cy="select-genre"
                         />
                     )}
                 />

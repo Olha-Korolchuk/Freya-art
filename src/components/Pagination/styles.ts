@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 32px;
+    padding-bottom: 8px;
     @media screen and (max-width: 540px) {
         gap: 16px;
     }
@@ -23,7 +24,8 @@ export const ArrowButtonPrev = styled.button`
     justify-content: center;
     border-radius: 50%;
     position: relative;
-    padding: 1px;
+    border: none;
+    background-color: #50b253;
     transform: rotate(90deg);
     transition: all 0.4s ease-in-out;
     &:disabled {
@@ -56,5 +58,9 @@ export const ArrowButtonNext = styled(ArrowButtonPrev)`
 export const ButtonPage = styled.button<{ isActive: boolean }>`
     color: ${({ isActive }) => (isActive ? '#191919' : '#ccc')};
     font-size: 16px;
+    padding: 4px 12px;
+    background-color: #deffdb;
+    border: none;
+    border-radius: 4px;
     font-weight: 600;
 `;
