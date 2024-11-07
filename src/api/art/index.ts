@@ -35,15 +35,6 @@ export const useGetFilteredArtsQuery = (filter?: {
             const collectionRef = collection(firestore, 'arts');
 
             // Запити для кожного фільтра
-            let titleQuery: Query<DocumentData> = collectionRef;
-            if (filter?.title) {
-                titleQuery = query(
-                    collectionRef,
-                    where('title', '>=', filter.title),
-                    where('title', '<=', filter.title + '\uf8ff'),
-                );
-            }
-
             let genreQuery: Query<DocumentData> = collectionRef;
             if (filter?.genre?.length) {
                 genreQuery = query(collectionRef, where('genre', 'array-contains-any', filter.genre));
@@ -55,28 +46,25 @@ export const useGetFilteredArtsQuery = (filter?: {
             }
 
             // Отримуємо окремі результати для кожного фільтра
-            const [titleDocs, genreDocs, typeDocs] = await Promise.all([
-                getDocs(titleQuery),
-                getDocs(genreQuery),
-                getDocs(typeQuery),
-            ]);
+            const [genreDocs, typeDocs] = await Promise.all([getDocs(genreQuery), getDocs(typeQuery)]);
 
             // Зберігаємо ID документів для швидкого доступу
-            const titleIds = new Set(titleDocs.docs.map((doc) => doc.id));
             const genreIds = new Set(genreDocs.docs.map((doc) => doc.id));
             const typeIds = new Set(typeDocs.docs.map((doc) => doc.id));
 
             // Перетин ID
-            const commonIds = [...titleIds].filter((id) => genreIds.has(id) && typeIds.has(id));
+            const commonIds = [...genreIds].filter((id) => typeIds.has(id));
 
             // Вибираємо документи, які відповідають усім фільтрам
-            const arts = commonIds.map((id) => {
-                const doc =
-                    titleDocs.docs.find((d) => d.id === id) ||
-                    genreDocs.docs.find((d) => d.id === id) ||
-                    typeDocs.docs.find((d) => d.id === id);
+            let arts = commonIds.map((id) => {
+                const doc = genreDocs.docs.find((d) => d.id === id) || typeDocs.docs.find((d) => d.id === id);
                 return doc?.data() as IArtIterator;
             });
+
+            if (filter?.title) {
+                const titleLower = filter.title.toLowerCase();
+                arts = arts.filter((art) => art.title.toLowerCase().includes(titleLower));
+            }
 
             // Пагінація
             let paginatedArts = arts || [];
