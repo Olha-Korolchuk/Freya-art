@@ -1,15 +1,15 @@
 import { RootState } from '@/store/store';
-import { EQueryKey, IArt } from '@/types';
+import { EQueryKey } from '@/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
     addDoc,
     collection,
     deleteDoc,
     doc,
+    DocumentData,
     getDocs,
-    limit,
+    Query,
     query,
-    startAfter,
     updateDoc,
     where,
 } from 'firebase/firestore';
@@ -34,50 +34,46 @@ export const useGetFilteredArtsQuery = (filter?: {
         queryFn: async () => {
             const collectionRef = collection(firestore, 'arts');
 
-            let countQuery = query(collectionRef);
-            if (filter?.title) {
-                countQuery = query(
-                    countQuery,
-                    where('title', '>=', filter.title),
-                    where('title', '<=', filter.title + '\uf8ff'),
-                );
-            }
+            // Запити для кожного фільтра
+            let genreQuery: Query<DocumentData> = collectionRef;
             if (filter?.genre?.length) {
-                countQuery = query(countQuery, where('genre', 'array-contains-any', filter.genre));
+                genreQuery = query(collectionRef, where('genre', 'array-contains-any', filter.genre));
             }
-            if (filter?.type?.length) {
-                countQuery = query(countQuery, where('type', 'array-contains-any', filter.type));
-            }
-            const countDocs = await getDocs(countQuery);
-            const total = countDocs.size;
 
-            let artsQuery = query(collectionRef);
+            let typeQuery: Query<DocumentData> = collectionRef;
+            if (filter?.type?.length) {
+                typeQuery = query(collectionRef, where('type', 'array-contains-any', filter.type));
+            }
+
+            // Отримуємо окремі результати для кожного фільтра
+            const [genreDocs, typeDocs] = await Promise.all([getDocs(genreQuery), getDocs(typeQuery)]);
+
+            // Зберігаємо ID документів для швидкого доступу
+            const genreIds = new Set(genreDocs.docs.map((doc) => doc.id));
+            const typeIds = new Set(typeDocs.docs.map((doc) => doc.id));
+
+            // Перетин ID
+            const commonIds = [...genreIds].filter((id) => typeIds.has(id));
+
+            // Вибираємо документи, які відповідають усім фільтрам
+            let arts = commonIds.map((id) => {
+                const doc = genreDocs.docs.find((d) => d.id === id) || typeDocs.docs.find((d) => d.id === id);
+                return doc?.data() as IArtIterator;
+            });
+
             if (filter?.title) {
-                artsQuery = query(
-                    artsQuery,
-                    where('title', '>=', filter.title),
-                    where('title', '<=', filter.title + '\uf8ff'),
-                );
-            }
-            if (filter?.genre?.length) {
-                artsQuery = query(artsQuery, where('genre', 'array-contains-any', filter.genre));
-            }
-            if (filter?.type?.length) {
-                artsQuery = query(artsQuery, where('type', 'array-contains-any', filter.type));
-            }
-            if (filter?.page && filter.page > 1) {
-                const lastVisible = await getDocs(query(collectionRef, limit((filter.page - 1) * itemsPerPage)));
-                const lastDoc = lastVisible.docs[lastVisible.docs.length - 1];
-                if (lastDoc) {
-                    artsQuery = query(artsQuery, startAfter(lastDoc));
-                }
+                const titleLower = filter.title.toLowerCase();
+                arts = arts.filter((art) => art.title.toLowerCase().includes(titleLower));
             }
 
-            artsQuery = query(artsQuery, limit(itemsPerPage));
-            const { docs } = await getDocs(artsQuery);
-            const arts = docs.map((doc) => doc.data()) as IArtIterator[];
+            // Пагінація
+            let paginatedArts = arts || [];
+            let total = arts.length || 0;
+            const page = filter?.page ?? 1;
+            paginatedArts = arts.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+            total = arts.length;
 
-            return { arts, total };
+            return { arts: paginatedArts, total };
         },
     });
 };
