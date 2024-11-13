@@ -11,7 +11,7 @@ import {
     StyledButton,
     StyledReplace,
 } from './styles';
-import { FC, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import { createDefaultValues, ICreateArtFormFields } from './data';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,6 @@ interface IActionProps {
 
 export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = false }) => {
     const { user } = useSelector((state: RootState) => state.auth);
-    const dropAreaRef = useRef<HTMLDivElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
     const [url, setUrl] = useState<string | null>(defaultValues?.image || null);
 
@@ -69,7 +68,7 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
 
     return (
         <StyledContainer onSubmit={handleSubmit(onSubmit)}>
-            <StyledDropArea ref={dropAreaRef} isError={isSubmitted && !file}>
+            <StyledDropArea isError={isSubmitted && !file}>
                 <StyledFormContent>
                     <StyledInstructions>
                         Upload images using the file selection dialog or by dragging the desired images into the
@@ -89,8 +88,10 @@ export const Action: FC<IActionProps> = ({ defaultValues, handler, isEdit = fals
             <StyledForm>
                 <FormInput
                     placeholder="Title"
-                    type="title"
-                    register={register('title', { required: 'Title is required' })}
+                    type="text"
+                    register={register('title', {
+                        required: 'Title is required',
+                    })}
                     error={errors.title?.message}
                 />
 

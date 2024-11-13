@@ -37,12 +37,10 @@ const StyledLink = styled(Link)`
     border: 1px solid #9dbd61;
 `;
 
-export const NotFoundPage = () => {
-    return (
-        <StyledContainer>
-            <StyledTitle>404</StyledTitle>
-            <StyledSubtitle>Page not found</StyledSubtitle>
-            <StyledLink to={LINK_TEMPLATES.HOME}>Home</StyledLink>
-        </StyledContainer>
-    );
-};
+export const NotFoundPage = () => (
+    <StyledContainer>
+        <StyledTitle>404</StyledTitle>
+        <StyledSubtitle>Page not found</StyledSubtitle>
+        <StyledLink to={LINK_TEMPLATES.HOME}>Home</StyledLink>
+    </StyledContainer>
+);
